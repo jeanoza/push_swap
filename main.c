@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/04 00:09:32 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/04 00:46:49 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,23 @@ void	reverse_rotate(t_stack **stack)
 	*stack = (*stack)->prev;
 }
 
-void	free_stack(t_stack **stack)
+void	free_stack(t_stack *stack)
 {
-	t_stack	*tmp;
+	t_stack	*current;
+	t_stack	*next;
 
-	tmp = *stack;
-	while (tmp != NULL && tmp->next != *stack)
+	current = stack;
+	next = NULL;
+	while (current != NULL)
 	{
-		write(1, "here\n", 5);
-		*stack = tmp->next;
-		free(tmp);
-		tmp = tmp->next;
+		if (current->next == stack)
+		{
+			free(current);
+			break;
+		}
+		next = current->next;
+		free(current);
+		current = next;
 	}
 }
 
@@ -113,29 +119,34 @@ int	main(int ac, char **av)
 	//test next
 	printf("test next - stop at last\n");
 	tmp = stack_a;
-	while (tmp != NULL && tmp->next != stack_a)
+	while (tmp != NULL)
 	{
 		printf("(next)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
+		if (tmp->next == stack_a)
+			break ;
 		tmp = tmp->next;
 	}
 
 	//test prev
 	last = tmp;
 	printf("test prev - stop at first\n");
-	while (tmp != NULL && tmp->prev != last)
+	while (tmp != NULL)
 	{
 		printf("(prev)tmp[%p]%d - tmp->prev[%p]\n",tmp, tmp->num, tmp->prev);
+		if (tmp->prev == last)
+			break ;
 		tmp = tmp->prev;
 	}
-	printf("(prev)tmp[%p]%d - tmp->prev[%p]\n\n",tmp, tmp->num, tmp->prev);
 
 	//rotate
 	rotate(&stack_a);
 	tmp = stack_a;
 	printf("after rotate - stop at last\n");
-	while (tmp != NULL && tmp->next != stack_a)
+	while (tmp != NULL)
 	{
 		printf("(next)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
+		if (tmp->next == stack_a)
+			break ;
 		tmp = tmp->next;
 	}
 
@@ -143,14 +154,15 @@ int	main(int ac, char **av)
 	reverse_rotate(&stack_a);
 	tmp = stack_a;
 	printf("rra - stop at last\n");
-	while (tmp != NULL && tmp->next != stack_a)
+	while (tmp != NULL)
 	{
 		printf("(next)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
+		if (tmp->next == stack_a)
+			break ;
 		tmp = tmp->next;
 	}
 
-
-	free_stack(&stack_a);
+	free_stack(stack_a);
 
 	return (0);
 }
