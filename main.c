@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/02 22:06:29 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/04 00:09:32 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,141 @@
 #include <stdio.h>
 #include <string.h>
 
-int	*init_stack(int ac, char **av)
+typedef struct s_stack
 {
-	int	i;
-	int	*stack;
+	int				num;
+	struct s_stack *next;
+	struct s_stack *prev;
+}	t_stack;
 
-	stack = malloc(sizeof(int) * ac);
-	i = 0;
-	while (i < ac)
+t_stack	*new_stack(int num)
+{
+	t_stack	*stack;
+
+	stack = malloc(sizeof(t_stack));
+	if (stack)
 	{
-		stack[i] = atoi(av[i]);
-		++i;
+		stack->num = num;
+		stack->next = NULL;
+		stack->prev = NULL;
 	}
 	return (stack);
 }
 
+void	append_stack(t_stack **stack_list, t_stack *new_stack)
+{
+	t_stack	*tmp;
+
+	if (!*stack_list)
+	{
+		*stack_list = new_stack;
+		return ;
+	}
+	tmp = *stack_list;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new_stack;
+	new_stack->prev = tmp;
+}
+
+t_stack	*init_stack(int ac, char **av)
+{
+	int		i;
+	t_stack	*stack;
+	t_stack	*tmp;
+
+	stack = NULL;
+	i = 0;
+	while (i < ac)
+	{
+		append_stack(&stack, new_stack(atoi(av[i])));
+		++i;
+	}
+	tmp = stack;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = stack;
+	stack->prev = tmp;
+	return (stack);
+}
+void	swap(t_stack *stack)
+{
+}
+
+void	rotate(t_stack **stack)
+{
+	*stack = (*stack)->next;
+}
+void	reverse_rotate(t_stack **stack)
+{
+	*stack = (*stack)->prev;
+}
+
+void	free_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	tmp = *stack;
+	while (tmp != NULL && tmp->next != *stack)
+	{
+		write(1, "here\n", 5);
+		*stack = tmp->next;
+		free(tmp);
+		tmp = tmp->next;
+	}
+}
+
+//TODO:put validation function for input args
 int	main(int ac, char **av)
 {
-	int	*stack_a;
-	int	*stack_b;
+	t_stack	*stack_a;
+	t_stack	*tmp;
+	t_stack	*last;
 
 	stack_a = init_stack(ac - 1, av + 1);
 
-	int i = -1;
-	while (++i < ac - 1)
-		printf("(%d)%d\n", i, stack_a[i]);
-		
-	free(stack_a);
-	while (1);
+	//test next
+	printf("test next - stop at last\n");
+	tmp = stack_a;
+	while (tmp != NULL && tmp->next != stack_a)
+	{
+		printf("(next)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
+		tmp = tmp->next;
+	}
+
+	//test prev
+	last = tmp;
+	printf("test prev - stop at first\n");
+	while (tmp != NULL && tmp->prev != last)
+	{
+		printf("(prev)tmp[%p]%d - tmp->prev[%p]\n",tmp, tmp->num, tmp->prev);
+		tmp = tmp->prev;
+	}
+	printf("(prev)tmp[%p]%d - tmp->prev[%p]\n\n",tmp, tmp->num, tmp->prev);
+
+	//rotate
+	rotate(&stack_a);
+	tmp = stack_a;
+	printf("after rotate - stop at last\n");
+	while (tmp != NULL && tmp->next != stack_a)
+	{
+		printf("(next)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
+		tmp = tmp->next;
+	}
+
+	//reverse rotate
+	reverse_rotate(&stack_a);
+	tmp = stack_a;
+	printf("rra - stop at last\n");
+	while (tmp != NULL && tmp->next != stack_a)
+	{
+		printf("(next)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
+		tmp = tmp->next;
+	}
+
+
+	free_stack(&stack_a);
+
 	return (0);
 }
 
