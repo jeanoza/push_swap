@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/04 18:10:47 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/04 19:20:12 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	append_stack(t_stack **stack_list, t_stack *new_stack)
 	tmp->next = new_stack;
 	new_stack->prev = tmp;
 }
+//TODO:this for push
+void	prepend_stack()
 
 t_stack	*init_stack(int ac, char **av)
 {
@@ -74,6 +76,7 @@ t_stack	*init_stack(int ac, char **av)
 	stack->prev = tmp;
 	return (stack);
 }
+
 void	swap(t_stack *stack)
 {
 	int	tmp;
@@ -82,6 +85,26 @@ void	swap(t_stack *stack)
 	stack->num = stack->next->num;
 	stack->next->num = tmp;
 }
+
+void	push(t_stack **src, t_stack **dst)
+{
+	t_stack	*tmp;
+	t_stack	*last;
+
+	tmp = *src;
+	last = (*src)->prev;
+	*src = (*src)->next;
+	(*src)->prev = last;
+	last->next = *src;
+
+	if ((*dst) != NULL)
+	{
+		tmp->next = *dst;
+	}
+	append_stack(dst, tmp);
+	// (*dst)->next = NULL;
+}
+
 
 void	rotate(t_stack **stack)
 {
@@ -113,60 +136,51 @@ void	free_stack(t_stack *stack)
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
-	t_stack	*tmp;
+	t_stack	*stack_b;
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
 
 	stack_a = init_stack(ac - 1, av + 1);
 
 	//test
 	printf("init\n");
-	tmp = stack_a;
-	while (tmp != NULL)
+	tmp_a = stack_a;
+	while (tmp_a != NULL)
 	{
-		printf("(init)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
-		if (tmp->next == stack_a)
+		printf("(init)tmp_a[%p]%d\n", tmp_a, tmp_a->num);
+		if (tmp_a->next == stack_a)
 			break ;
-		tmp = tmp->next;
+		tmp_a = tmp_a->next;
 	}
 
-
-	swap(stack_a);
-	tmp = stack_a;
-	printf("sa\n");
-	while (tmp != NULL)
+	//push
+	push(&stack_a, &stack_b);
+	printf("push_test\n");
+	tmp_a = stack_a;
+	while (tmp_a != NULL)
 	{
-		printf("(sa)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
-		if (tmp->next == stack_a)
+		// printf("(push)tmp_a[%p]%d\n", tmp_a, tmp_a->num);
+		printf("(push)tmp_a[%p]%d - tmp_a->next[%p]\n",tmp_a, tmp_a->num, tmp_a->next);
+		if (tmp_a->next == stack_a)
 			break ;
-		tmp = tmp->next;
+		tmp_a = tmp_a->next;
 	}
+	tmp_b = stack_b;
+	printf("tmp_b[%p]%d",tmp_b, tmp_b->num);
+	push(&stack_a, &stack_b);
+	printf("tmp_b[%p]%d",tmp_b, tmp_b->num);
+	// while (tmp_b != NULL)
+	// {
+	// 	printf("(push)tmp_b[%p]%d\n", tmp_b, tmp_b->num);
+	// 	if (tmp_b->next == stack_b)
+	// 		break ;
+	// 	tmp_b = tmp_b->next;
+	// }
 
-	//rotate
-	rotate(&stack_a);
-	tmp = stack_a;
-	printf("ra\n");
-	while (tmp != NULL)
-	{
-		printf("(ra)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
-		if (tmp->next == stack_a)
-			break ;
-		tmp = tmp->next;
-	}
 
-	//reverse rotate
-	reverse_rotate(&stack_a);
-	tmp = stack_a;
-	printf("rra\n");
-	while (tmp != NULL)
-	{
-		printf("(rra)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
-		if (tmp->next == stack_a)
-			break ;
-		tmp = tmp->next;
-	}
 
 	//free
 	free_stack(stack_a);
-	while (1);
 
 	return (0);
 }
@@ -212,4 +226,39 @@ rrr : rra and rrb at the same time.
 	// 	if (tmp->prev == last)
 	// 		break ;
 	// 	tmp = tmp->prev;
+	// }
+
+	// swap(stack_a);
+	// tmp_a = stack_a;
+	// printf("sa\n");
+	// while (tmp_a != NULL)
+	// {
+	// 	printf("(sa)tmp_a[%p]%d - tmp_a->next[%p]\n",tmp_a, tmp_a->num, tmp_a->next);
+	// 	if (tmp_a->next == stack_a)
+	// 		break ;
+	// 	tmp_a = tmp_a->next;
+	// }
+
+	// //rotate
+	// rotate(&stack_a);
+	// tmp_a = stack_a;
+	// printf("ra\n");
+	// while (tmp_a != NULL)
+	// {
+	// 	printf("(ra)tmp_a[%p]%d - tmp_a->next[%p]\n",tmp_a, tmp_a->num, tmp_a->next);
+	// 	if (tmp_a->next == stack_a)
+	// 		break ;
+	// 	tmp_a = tmp_a->next;
+	// }
+
+	// //reverse rotate
+	// reverse_rotate(&stack_a);
+	// tmp_a = stack_a;
+	// printf("rra\n");
+	// while (tmp_a != NULL)
+	// {
+	// 	printf("(rra)tmp_a[%p]%d - tmp_a->next[%p]\n",tmp_a, tmp_a->num, tmp_a->next);
+	// 	if (tmp_a->next == stack_a)
+	// 		break ;
+	// 	tmp_a = tmp_a->next;
 	// }
