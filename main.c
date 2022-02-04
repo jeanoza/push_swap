@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/04 17:48:48 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/04 18:10:47 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ int	main(int ac, char **av)
 	stack_a = init_stack(ac - 1, av + 1);
 
 	//test
-	printf("Init\n");
+	printf("init\n");
 	tmp = stack_a;
 	while (tmp != NULL)
 	{
-		printf("(next)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
+		printf("(init)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
 		if (tmp->next == stack_a)
 			break ;
 		tmp = tmp->next;
@@ -166,6 +166,7 @@ int	main(int ac, char **av)
 
 	//free
 	free_stack(stack_a);
+	while (1);
 
 	return (0);
 }
