@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/04 19:20:12 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/05 00:29:30 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,23 @@ void	append_stack(t_stack **stack_list, t_stack *new_stack)
 	new_stack->prev = tmp;
 }
 //TODO:this for push
-void	prepend_stack()
+void	prepend_stack(t_stack **stack_list, t_stack *new_stack)
+{
+	t_stack	*tmp;
+
+	if (!*stack_list)
+	{
+		*stack_list = new_stack;
+		return ;
+	}
+	new_stack->next = *stack_list;
+	(*stack_list)->prev = new_stack;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	// printf("(prepend)tmp[%p]\n", tmp);
+	// tmp->next = new_stack;
+	// new_stack->prev = tmp;
+}
 
 t_stack	*init_stack(int ac, char **av)
 {
@@ -88,21 +104,18 @@ void	swap(t_stack *stack)
 
 void	push(t_stack **src, t_stack **dst)
 {
-	t_stack	*tmp;
+	t_stack	*first;
 	t_stack	*last;
 
-	tmp = *src;
-	last = (*src)->prev;
-	*src = (*src)->next;
+	first = *src;
+	last = first->prev;
+	*src = first->next;
 	(*src)->prev = last;
 	last->next = *src;
+	// first->prev = NULL;
+	// first->next = NULL;
 
-	if ((*dst) != NULL)
-	{
-		tmp->next = *dst;
-	}
-	append_stack(dst, tmp);
-	// (*dst)->next = NULL;
+	prepend_stack(dst, first);
 }
 
 
@@ -132,6 +145,23 @@ void	free_stack(t_stack *stack)
 	}
 }
 
+void	print(t_stack *stack, char *title, char *stack_name)
+{
+	t_stack	*tmp;
+
+	tmp = stack;
+	write(1, title, strlen(title));
+	write(1, "\n", 1);
+	while (tmp != NULL)
+	{
+		// printf("%s[%p]%d next[%p]%d\n", stack_name, tmp, tmp->num, tmp->next, tmp->next->num);
+		printf("%s[%p]%d\n", stack_name, tmp, tmp->num);
+		if (tmp->next == stack)
+			break;
+		tmp = tmp->next;
+	}
+}
+
 //TODO:put validation function for input args
 int	main(int ac, char **av)
 {
@@ -141,46 +171,28 @@ int	main(int ac, char **av)
 	t_stack	*tmp_b;
 
 	stack_a = init_stack(ac - 1, av + 1);
+	stack_b = NULL;
 
 	//test
 	printf("init\n");
 	tmp_a = stack_a;
-	while (tmp_a != NULL)
-	{
-		printf("(init)tmp_a[%p]%d\n", tmp_a, tmp_a->num);
-		if (tmp_a->next == stack_a)
-			break ;
-		tmp_a = tmp_a->next;
-	}
-
+	print(stack_a, "Init:", "stack_a");
 	//push
 	push(&stack_a, &stack_b);
-	printf("push_test\n");
-	tmp_a = stack_a;
-	while (tmp_a != NULL)
-	{
-		// printf("(push)tmp_a[%p]%d\n", tmp_a, tmp_a->num);
-		printf("(push)tmp_a[%p]%d - tmp_a->next[%p]\n",tmp_a, tmp_a->num, tmp_a->next);
-		if (tmp_a->next == stack_a)
-			break ;
-		tmp_a = tmp_a->next;
-	}
-	tmp_b = stack_b;
-	printf("tmp_b[%p]%d",tmp_b, tmp_b->num);
 	push(&stack_a, &stack_b);
-	printf("tmp_b[%p]%d",tmp_b, tmp_b->num);
-	// while (tmp_b != NULL)
-	// {
-	// 	printf("(push)tmp_b[%p]%d\n", tmp_b, tmp_b->num);
-	// 	if (tmp_b->next == stack_b)
-	// 		break ;
-	// 	tmp_b = tmp_b->next;
-	// }
-
+	print(stack_a, "after push:", "stack_a");
+	// print(stack_b, "after push:", "stack_b");
+	// push(&stack_a, &stack_b);
+	// print(stack_a, "after push:", "stack_a");
+	// print(stack_b, "after push:", "stack_b");
+	// push(&stack_b, &stack_a);
+	// print(stack_a, "after push:", "stack_a");
+	// print(stack_b, "after push:", "stack_b");
 
 
 	//free
 	free_stack(stack_a);
+	free_stack(stack_b);
 
 	return (0);
 }
