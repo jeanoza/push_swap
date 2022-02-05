@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/05 00:29:30 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/05 12:58:23 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,29 @@ void	append_stack(t_stack **stack_list, t_stack *new_stack)
 //TODO:this for push
 void	prepend_stack(t_stack **stack_list, t_stack *new_stack)
 {
-	t_stack	*tmp;
+	t_stack	*first;
+	t_stack *last;
 
 	if (!*stack_list)
 	{
 		*stack_list = new_stack;
 		return ;
 	}
-	new_stack->next = *stack_list;
-	(*stack_list)->prev = new_stack;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	// printf("(prepend)tmp[%p]\n", tmp);
-	// tmp->next = new_stack;
-	// new_stack->prev = tmp;
+	first = *stack_list;
+	last = first->prev;
+	new_stack->next = first;
+	first->prev = new_stack;
+	if (last == NULL)
+	{
+		first->next = new_stack;
+		new_stack->prev = *stack_list;
+	}
+	else
+	{
+		last->next = new_stack;
+		new_stack->prev = last;
+	}
+	*stack_list = new_stack;
 }
 
 t_stack	*init_stack(int ac, char **av)
@@ -110,11 +119,15 @@ void	push(t_stack **src, t_stack **dst)
 	first = *src;
 	last = first->prev;
 	*src = first->next;
-	(*src)->prev = last;
-	last->next = *src;
-	// first->prev = NULL;
-	// first->next = NULL;
-
+	if (*(src) == first)
+		*src = NULL;
+	else
+	{
+		(*src)->prev = last;
+		last->next = *src;
+	}
+	first->prev = NULL;
+	first->next = NULL;
 	prepend_stack(dst, first);
 }
 
@@ -154,7 +167,6 @@ void	print(t_stack *stack, char *title, char *stack_name)
 	write(1, "\n", 1);
 	while (tmp != NULL)
 	{
-		// printf("%s[%p]%d next[%p]%d\n", stack_name, tmp, tmp->num, tmp->next, tmp->next->num);
 		printf("%s[%p]%d\n", stack_name, tmp, tmp->num);
 		if (tmp->next == stack)
 			break;
@@ -167,29 +179,45 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_stack	*tmp_a;
-	t_stack	*tmp_b;
+	t_stack	*tmp;
 
 	stack_a = init_stack(ac - 1, av + 1);
 	stack_b = NULL;
 
 	//test
 	printf("init\n");
-	tmp_a = stack_a;
 	print(stack_a, "Init:", "stack_a");
 	//push
 	push(&stack_a, &stack_b);
+	print(stack_a, "after push1:", "stack_a");
+	print(stack_b, "after push1:", "stack_b");
 	push(&stack_a, &stack_b);
-	print(stack_a, "after push:", "stack_a");
-	// print(stack_b, "after push:", "stack_b");
-	// push(&stack_a, &stack_b);
-	// print(stack_a, "after push:", "stack_a");
-	// print(stack_b, "after push:", "stack_b");
-	// push(&stack_b, &stack_a);
-	// print(stack_a, "after push:", "stack_a");
-	// print(stack_b, "after push:", "stack_b");
-
-
+	print(stack_a, "after push2:", "stack_a");
+	print(stack_b, "after push2:", "stack_b");
+	push(&stack_a, &stack_b);
+	print(stack_a, "after push3:", "stack_a");
+	print(stack_b, "after push3:", "stack_b");
+	push(&stack_a, &stack_b);
+	print(stack_a, "after push4:", "stack_a");
+	print(stack_b, "after push5:", "stack_b");
+	push(&stack_a, &stack_b);
+	print(stack_a, "after push5:", "stack_a");
+	print(stack_b, "after push5:", "stack_b");
+	push(&stack_b, &stack_a);
+	print(stack_a, "after push6:", "stack_a");
+	print(stack_b, "after push6:", "stack_b");
+	push(&stack_b, &stack_a);
+	print(stack_a, "after push7:", "stack_a");
+	print(stack_b, "after push7:", "stack_b");
+	push(&stack_b, &stack_a);
+	print(stack_a, "after push8:", "stack_a");
+	print(stack_b, "after push8:", "stack_b");
+	push(&stack_b, &stack_a);
+	print(stack_a, "after push9:", "stack_a");
+	print(stack_b, "after push9:", "stack_b");
+	push(&stack_b, &stack_a);
+	print(stack_a, "after push10:", "stack_a");
+	print(stack_b, "after push10:", "stack_b");
 	//free
 	free_stack(stack_a);
 	free_stack(stack_b);
