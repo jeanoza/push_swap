@@ -6,23 +6,11 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/05 12:58:23 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/05 16:50:55 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-
-//TODO:Remove this libs...
-#include <stdio.h>
-#include <string.h>
-
-typedef struct s_stack
-{
-	int				num;
-	struct s_stack *next;
-	struct s_stack *prev;
-}	t_stack;
+#include "push_swap.h"
 
 t_stack	*new_stack(int num)
 {
@@ -53,11 +41,11 @@ void	append_stack(t_stack **stack_list, t_stack *new_stack)
 	tmp->next = new_stack;
 	new_stack->prev = tmp;
 }
-//TODO:this for push
+
 void	prepend_stack(t_stack **stack_list, t_stack *new_stack)
 {
 	t_stack	*first;
-	t_stack *last;
+	t_stack	*last;
 
 	if (!*stack_list)
 	{
@@ -117,6 +105,8 @@ void	push(t_stack **src, t_stack **dst)
 	t_stack	*last;
 
 	first = *src;
+	if (first == NULL)
+		return ;
 	last = first->prev;
 	*src = first->next;
 	if (*(src) == first)
@@ -130,7 +120,6 @@ void	push(t_stack **src, t_stack **dst)
 	first->next = NULL;
 	prepend_stack(dst, first);
 }
-
 
 void	rotate(t_stack **stack)
 {
@@ -218,6 +207,9 @@ int	main(int ac, char **av)
 	push(&stack_b, &stack_a);
 	print(stack_a, "after push10:", "stack_a");
 	print(stack_b, "after push10:", "stack_b");
+	push(&stack_b, &stack_a);
+	print(stack_a, "after push11:", "stack_a");
+	print(stack_b, "after push11:", "stack_b");
 	//free
 	free_stack(stack_a);
 	free_stack(stack_b);

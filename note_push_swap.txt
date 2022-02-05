@@ -1,0 +1,6 @@
+push
+
+	new			list
+	num			num
+	[prev]		[prev]
+	[next]		[next]
