@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 23:39:35 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/10 23:57:24 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/11 00:07:20 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	partition(int *arr, int pivot, int left, int right)
 	i = left;
 	while (i < right)
 	{
-		printf("\npivot:%d left:%d right:%d index:%d i:%d\n", pivot, left, right, index, i);
+		printf("pivot:%d left:%d right:%d index:%d i:%d\n", pivot, left, right, index, i);
 		if (arr[i] < arr[pivot])
 		{
 			swap(arr, i, index);
@@ -60,17 +60,30 @@ int *quick_sort(int *arr, int left, int right)
 	return (arr);
 }
 
-int main(void)
+int main(int ac, char **av)
 {
-	int arr[10] = {2, 1, 4, 5, 3, 100};
-	int	i = 0;
-	write(1, "\nInit\n", 6);
+	// int arr[10] = {2, 1, 4, 5, 3, 100};
+	int *arr;
+	int	i;
+
+	--ac;
+	++av;
+	arr = malloc(sizeof(int) * ac);
+	i = -1;
+	while (++i < ac)
+		arr[i] = atoi(av[i]);
+
+	i = 0;
+	write(1, "\nInit: ", 7);
 	while (arr[i])
 		printf("%d ", arr[i++]);
-	quick_sort(arr, 0, 5);
-	write(1, "\nAfter quicksort\n", 20);
+	putchar('\n');
+	quick_sort(arr, 0, ac - 1);
+	write(1, "\nAfter quicksort: ", 20);
 	i = 0;
 	while (arr[i])
 		printf("%d ", arr[i++]);
+	putchar('\n');
+	free(arr);
 	return (0);
 }
