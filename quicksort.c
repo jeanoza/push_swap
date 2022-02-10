@@ -31,7 +31,7 @@ int main() {
 
 	int arr[11] = { 5,4,3,2,1, 10, 11, 12 , 20, 14, 16};
 	quickSort(0, 10, arr);
-	for (int i = 0; i < 11; i++) printf("%d ",arr[i]);
+	// for (int i = 0; i < 11; i++) printf("%d ",arr[i]);
 
 	return 0;
 }
