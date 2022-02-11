@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/05 16:07:26 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/08 22:50:37 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,21 @@
 typedef struct s_stack
 {
 	int				num;
-	struct s_stack *next;
-	struct s_stack *prev;
+	struct s_stack	*next;
+	struct s_stack	*prev;
 }	t_stack;
+
+/* stack.c */
+t_stack	*new_stack(int num);
+void	append_stack(t_stack **stack_list, t_stack *new_stack);
+void	prepend_stack(t_stack **stack_list, t_stack *new_stack);
+t_stack	*init_stack(int ac, char **av);
+void	free_stack(t_stack *stack);
+
+/* order.c */
+void	swap(t_stack *stack, char opt);
+void	push(t_stack **src, t_stack **dst, char opt);
+void	rotate(t_stack **stack, char opt);
+void	reverse_rotate(t_stack **stack, char opt);
 
 #endif

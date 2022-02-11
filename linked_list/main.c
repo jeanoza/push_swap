@@ -3,149 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/05 16:50:55 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/08 22:58:34 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_stack	*new_stack(int num)
-{
-	t_stack	*stack;
-
-	stack = malloc(sizeof(t_stack));
-	if (stack)
-	{
-		stack->num = num;
-		stack->next = NULL;
-		stack->prev = NULL;
-	}
-	return (stack);
-}
-
-void	append_stack(t_stack **stack_list, t_stack *new_stack)
-{
-	t_stack	*tmp;
-
-	if (!*stack_list)
-	{
-		*stack_list = new_stack;
-		return ;
-	}
-	tmp = *stack_list;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new_stack;
-	new_stack->prev = tmp;
-}
-
-void	prepend_stack(t_stack **stack_list, t_stack *new_stack)
-{
-	t_stack	*first;
-	t_stack	*last;
-
-	if (!*stack_list)
-	{
-		*stack_list = new_stack;
-		return ;
-	}
-	first = *stack_list;
-	last = first->prev;
-	new_stack->next = first;
-	first->prev = new_stack;
-	if (last == NULL)
-	{
-		first->next = new_stack;
-		new_stack->prev = *stack_list;
-	}
-	else
-	{
-		last->next = new_stack;
-		new_stack->prev = last;
-	}
-	*stack_list = new_stack;
-}
-
-t_stack	*init_stack(int ac, char **av)
-{
-	int		i;
-	t_stack	*stack;
-	t_stack	*tmp;
-
-	stack = NULL;
-	i = 0;
-	while (i < ac)
-	{
-		append_stack(&stack, new_stack(atoi(av[i])));
-		++i;
-	}
-	tmp = stack;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = stack;
-	stack->prev = tmp;
-	return (stack);
-}
-
-void	swap(t_stack *stack)
-{
-	int	tmp;
-
-	tmp = stack->num;
-	stack->num = stack->next->num;
-	stack->next->num = tmp;
-}
-
-void	push(t_stack **src, t_stack **dst)
-{
-	t_stack	*first;
-	t_stack	*last;
-
-	first = *src;
-	if (first == NULL)
-		return ;
-	last = first->prev;
-	*src = first->next;
-	if (*(src) == first)
-		*src = NULL;
-	else
-	{
-		(*src)->prev = last;
-		last->next = *src;
-	}
-	first->prev = NULL;
-	first->next = NULL;
-	prepend_stack(dst, first);
-}
-
-void	rotate(t_stack **stack)
-{
-	*stack = (*stack)->next;
-}
-void	reverse_rotate(t_stack **stack)
-{
-	*stack = (*stack)->prev;
-}
-
-void	free_stack(t_stack *stack)
-{
-	t_stack	*current;
-	t_stack	*next;
-
-	current = stack;
-	next = NULL;
-	while (current != NULL)
-	{
-		next = current->next;
-		free(current);
-		if (next == stack)
-			break;
-		current = next;
-	}
-}
 
 void	print(t_stack *stack, char *title, char *stack_name)
 {
@@ -168,49 +33,13 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_stack	*tmp;
 
 	stack_a = init_stack(ac - 1, av + 1);
 	stack_b = NULL;
 
-	//test
-	printf("init\n");
-	print(stack_a, "Init:", "stack_a");
-	//push
-	push(&stack_a, &stack_b);
-	print(stack_a, "after push1:", "stack_a");
-	print(stack_b, "after push1:", "stack_b");
-	push(&stack_a, &stack_b);
-	print(stack_a, "after push2:", "stack_a");
-	print(stack_b, "after push2:", "stack_b");
-	push(&stack_a, &stack_b);
-	print(stack_a, "after push3:", "stack_a");
-	print(stack_b, "after push3:", "stack_b");
-	push(&stack_a, &stack_b);
-	print(stack_a, "after push4:", "stack_a");
-	print(stack_b, "after push5:", "stack_b");
-	push(&stack_a, &stack_b);
-	print(stack_a, "after push5:", "stack_a");
-	print(stack_b, "after push5:", "stack_b");
-	push(&stack_b, &stack_a);
-	print(stack_a, "after push6:", "stack_a");
-	print(stack_b, "after push6:", "stack_b");
-	push(&stack_b, &stack_a);
-	print(stack_a, "after push7:", "stack_a");
-	print(stack_b, "after push7:", "stack_b");
-	push(&stack_b, &stack_a);
-	print(stack_a, "after push8:", "stack_a");
-	print(stack_b, "after push8:", "stack_b");
-	push(&stack_b, &stack_a);
-	print(stack_a, "after push9:", "stack_a");
-	print(stack_b, "after push9:", "stack_b");
-	push(&stack_b, &stack_a);
-	print(stack_a, "after push10:", "stack_a");
-	print(stack_b, "after push10:", "stack_b");
-	push(&stack_b, &stack_a);
-	print(stack_a, "after push11:", "stack_a");
-	print(stack_b, "after push11:", "stack_b");
-	//free
+	swap(stack_a, 0);
+	push(&stack_a, &stack_b, 0);
+	swap(stack_b, 1);
 	free_stack(stack_a);
 	free_stack(stack_b);
 
@@ -238,59 +67,3 @@ rrb : reverse rotate b - shift down all elements of stack b by 1.
 	The last element becomes the first one.
 rrr : rra and rrb at the same time.
 */
-	// //test next
-	// printf("test next - stop at last\n");
-	// tmp = stack_a;
-	// while (tmp != NULL)
-	// {
-	// 	printf("(next)tmp[%p]%d - tmp->next[%p]\n",tmp, tmp->num, tmp->next);
-	// 	if (tmp->next == stack_a)
-	// 		break ;
-	// 	tmp = tmp->next;
-	// }
-
-	// //test prev
-	// last = tmp;
-	// printf("test prev - stop at first\n");
-	// while (tmp != NULL)
-	// {
-	// 	printf("(prev)tmp[%p]%d - tmp->prev[%p]\n",tmp, tmp->num, tmp->prev);
-	// 	if (tmp->prev == last)
-	// 		break ;
-	// 	tmp = tmp->prev;
-	// }
-
-	// swap(stack_a);
-	// tmp_a = stack_a;
-	// printf("sa\n");
-	// while (tmp_a != NULL)
-	// {
-	// 	printf("(sa)tmp_a[%p]%d - tmp_a->next[%p]\n",tmp_a, tmp_a->num, tmp_a->next);
-	// 	if (tmp_a->next == stack_a)
-	// 		break ;
-	// 	tmp_a = tmp_a->next;
-	// }
-
-	// //rotate
-	// rotate(&stack_a);
-	// tmp_a = stack_a;
-	// printf("ra\n");
-	// while (tmp_a != NULL)
-	// {
-	// 	printf("(ra)tmp_a[%p]%d - tmp_a->next[%p]\n",tmp_a, tmp_a->num, tmp_a->next);
-	// 	if (tmp_a->next == stack_a)
-	// 		break ;
-	// 	tmp_a = tmp_a->next;
-	// }
-
-	// //reverse rotate
-	// reverse_rotate(&stack_a);
-	// tmp_a = stack_a;
-	// printf("rra\n");
-	// while (tmp_a != NULL)
-	// {
-	// 	printf("(rra)tmp_a[%p]%d - tmp_a->next[%p]\n",tmp_a, tmp_a->num, tmp_a->next);
-	// 	if (tmp_a->next == stack_a)
-	// 		break ;
-	// 	tmp_a = tmp_a->next;
-	// }
