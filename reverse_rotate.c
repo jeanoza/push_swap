@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   head.c                                             :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/12 18:56:05 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/12 19:54:22 by kychoi           ###   ########.fr       */
+/*   Created: 2022/02/12 21:34:31 by kychoi            #+#    #+#             */
+/*   Updated: 2022/02/12 21:35:22 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// t_head	*init_head()
-// {
-// 	t_head	*head;
+static void	reverse_rotate(t_stack **stack)
+{
+	if (*stack == NULL || (*stack)->prev == NULL)
+		return ;
+	*stack = (*stack)->prev;
+}
 
-// 	head = malloc(sizeof(t_head));
-// 	// head->stack_a = stack_a;
-// 	// head->stack_b = stack_b;
-// 	return (head);
-// }
+void	rra(t_head *head)
+{
+	reverse_rotate(&(head->stack_a));
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_head *head)
+{
+	reverse_rotate(&(head->stack_b));
+	write(1, "rrb\n", 4);
+}
+
+void	rrr(t_head *head)
+{
+	reverse_rotate(&(head->stack_a));
+	reverse_rotate(&(head->stack_b));
+	write(1, "rrr\n", 4);
+}

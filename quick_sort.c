@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 23:39:35 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/12 12:28:05 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/12 20:55:23 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	quick_swap(int *arr, int i, int j)
 
 static int	partition(int *arr, int pivot, int left, int right)
 {
-	int index;
+	int	index;
 	int	i;
 
 	index = left;
@@ -44,10 +44,10 @@ static int	partition(int *arr, int pivot, int left, int right)
 	return (index);
 }
 
-static int *quick_sort(int *arr, int left, int right)
+int	*quick_sort(int *arr, int left, int right)
 {
 	int	pivot;
-	int index;
+	int	index;
 
 	if (left < right)
 	{
@@ -57,25 +57,4 @@ static int *quick_sort(int *arr, int left, int right)
 		quick_sort(arr, index + 1, right);
 	}
 	return (arr);
-}
-
-int	*init_array(int ac, char **av)
-{
-	int *arr;
-	int	i;
-
-	arr = malloc(sizeof(int) * ac);
-	i = -1;
-	while (++i < ac)
-		arr[i] = atoi(av[i]);
-	// printf("here:%d\n", *(arr + i - 1));
-	// *(arr + i) = 0;
-	quick_sort(arr, 0, ac - 1);
-	printf("\nInit array(elements num:%d, median:%d)\n", ac, arr[ac / 2]);
-	i = -1;
-	while (++i < ac)
-		printf("%d ", arr[i]);
-	putchar('\n');
-	return (arr);
-
 }

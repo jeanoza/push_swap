@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/12 19:28:36 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/12 21:36:39 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,39 @@ typedef struct s_head
 {
 	struct s_stack	*stack_a;
 	struct s_stack	*stack_b;
+	int				median;
+	int				length;
 }	t_head;
 
-/* stack.c */
-t_stack	*new_stack(int num);
-void	append_stack(t_stack **stack_list, t_stack *new_stack);
-void	prepend_stack(t_stack **stack_list, t_stack *new_stack);
-t_stack	*init_stack(int ac, char **av);
-void	free_stack(t_stack *stack);
-
-/* order.c */
-void	swap(t_stack *stack, char opt);
-void	push(t_stack **src, t_stack **dst);
-void	rotate(t_stack **stack, char opt);
-void	reverse_rotate(t_stack **stack, char opt);
-
-void	pb(t_head	*head);
-
-/* head.c */
-t_head	*init_head(t_stack *stack_a, t_stack *stack_b);
+/* init.c */
+t_head	*init(int ac, char **av);
 
 /* quick_sort.c */
-int		*init_array(int ac, char **av);
+int		*quick_sort(int *arr, int left, int right);
+
+/* stack.c */
+t_stack	*init_stack(int ac, char **av);
+void	append_stack(t_stack **stack_list, t_stack *new_stack);
+void	prepend_stack(t_stack **stack_list, t_stack *new_stack);
+void	free_stack(t_stack *stack);
+
+/* swap.c */
+void	sa(t_head	*head);
+void	sb(t_head	*head);
+void	ss(t_head	*head);
+
+/* push.c */
+void	pb(t_head	*head);
+void	pa(t_head	*head);
+
+/* rotate.c */
+void	ra(t_head *head);
+void	rb(t_head *head);
+void	rr(t_head *head);
+
+/* reverse_rotate.c */
+void	rra(t_head *head);
+void	rrb(t_head *head);
+void	rrr(t_head *head);
 
 #endif

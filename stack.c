@@ -6,13 +6,13 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/12 19:06:09 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/12 21:01:23 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*new_stack(int num)
+static t_stack	*new_stack(int num)
 {
 	t_stack	*stack;
 
@@ -102,7 +102,7 @@ void	free_stack(t_stack *stack)
 		next = current->next;
 		free(current);
 		if (next == stack)
-			break;
+			break ;
 		current = next;
 	}
 }
