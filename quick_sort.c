@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 23:39:35 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/11 11:54:37 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/12 12:28:05 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,13 @@ int	*init_array(int ac, char **av)
 	i = -1;
 	while (++i < ac)
 		arr[i] = atoi(av[i]);
-	quick_sort(arr, 0, ac);
+	// printf("here:%d\n", *(arr + i - 1));
+	// *(arr + i) = 0;
+	quick_sort(arr, 0, ac - 1);
 	printf("\nInit array(elements num:%d, median:%d)\n", ac, arr[ac / 2]);
-	i = 0;
-	while (arr[i])
-		printf("%d ", arr[i++]);
+	i = -1;
+	while (++i < ac)
+		printf("%d ", arr[i]);
 	putchar('\n');
 	return (arr);
 

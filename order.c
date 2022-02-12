@@ -21,13 +21,17 @@ void	swap(t_stack *stack, char opt)
 	tmp = stack->num;
 	stack->num = stack->next->num;
 	stack->next->num = tmp;
-	if (opt == 0)
-		write(1, "sa\n", 3);
-	else
-		write(1, "sb\n", 3);
+	printf("s%c\n", opt);
 }
 
-void	push(t_stack **src, t_stack **dst, char opt)
+void	pb(t_head	*head)
+{
+	printf("1)stack_a[%p]:%d stack_b[%p]\n", head->stack_a, head->stack_a->num, head->stack_b);
+	push(&(head->stack_a), &(head->stack_b));
+	printf("2)stack_a[%p]:%d stack_b[%p]\n", head->stack_a, head->stack_a->num, head->stack_b);
+}
+
+void	push(t_stack **src, t_stack **dst)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -41,16 +45,14 @@ void	push(t_stack **src, t_stack **dst, char opt)
 		*src = NULL;
 	else
 	{
+		// printf("1)src[%p] src->prev[%p] src->next[%p], last[%p]\n", *src, (*src)->prev, (*src)->next, last);
 		(*src)->prev = last;
 		last->next = *src;
+		// printf("2)src[%p] src->prev[%p] src->next[%p], last[%p]\n", *src, (*src)->prev, (*src)->next, last);
 	}
 	first->prev = NULL;
 	first->next = NULL;
 	prepend_stack(dst, first);
-	if (opt == 0)
-		write(1, "pa\n", 3);
-	else
-		write(1, "pb\n", 3);
 }
 
 void	rotate(t_stack **stack, char opt)
@@ -58,10 +60,7 @@ void	rotate(t_stack **stack, char opt)
 	if ((*stack)->next == NULL)
 		return ;
 	*stack = (*stack)->next;
-	if (opt == 0)
-		write(1, "ra\n", 3);
-	else
-		write(1, "rb\n", 3);
+	printf("r%c\n", opt);
 }
 
 void	reverse_rotate(t_stack **stack, char opt)
@@ -69,8 +68,5 @@ void	reverse_rotate(t_stack **stack, char opt)
 	if ((*stack)->prev == NULL)
 		return ;
 	*stack = (*stack)->prev;
-	if (opt == 0)
-		write(1, "rra\n", 3);
-	else
-		write(1, "rrb\n", 3);
+	printf("rr%c\n", opt);
 }

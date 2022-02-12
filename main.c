@@ -6,45 +6,65 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/11 12:46:58 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/12 19:49:41 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	ft_stack_length(t_stack *stack)
+{
+	int		count;
+	t_stack	*tmp;
+
+	if (stack == NULL)
+		return (0);
+	if (stack->next == NULL)
+		return (1);
+	else
+	{
+		count = 0;
+		tmp = stack;
+		while (count == 0 || tmp != stack)
+		{
+			++count;
+			tmp = tmp->next;
+		}
+	}
+	return (count);
+}
+
 void	print(t_stack *stack1, t_stack *stack2)
 {
 	t_stack	*tmp1;
 	t_stack	*tmp2;
-	int		trigger;
 
 	tmp1 = stack1;
 	tmp2 = stack2;
-	trigger = 0;
-	write(1, "\n>> Print stacks:\n", 18);
+	printf("\n>> Print stacks:\n\n");
 	while (tmp1 || tmp2)
 	{
-		if ((trigger == 1 && (tmp1 == NULL || tmp2 == NULL)) || trigger == 2)
-		{
-			write(1, "- - -\na  b\n", 11);
-			break ;
-		}
 		if (tmp1)
 		{
-			printf("%d ", tmp1->num);
-			if (tmp1->next == stack1)
-				++trigger;
+			printf("tmp1\n");
+			printf("[%p]%d\t", tmp1, tmp1->num);
 			tmp1 = tmp1->next;
+			if (tmp1 == stack1)
+				tmp1 = NULL;
 		}
+		else
+			printf("\t");
 		if (tmp2)
 		{
-			printf("%d ", tmp2->num);
-			if (tmp2->next == stack2)
-				++trigger;
+			printf("tmp2\n");
+			printf("[%p]%d\t", tmp2, tmp2->num);
 			tmp2 = tmp2->next;
+			if (tmp2 == stack2)
+				tmp2 = NULL;
 		}
-		putchar('\n');
+		printf("\n");
 	}
+	printf("-\t-\na\tb\n\n");
 }
 
 //TODO:put validation function for input args
@@ -52,17 +72,22 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	t_head	*head;
+	int		*arr;
 
-	int *arr = init_array(ac - 1, av + 1);
+	arr = init_array(ac - 1, av + 1);
 	free(arr);
 	stack_a = init_stack(ac - 1, av + 1);
 	stack_b = NULL;
-
-	push(&stack_a, &stack_b, 0);
-
+	head = init_head(stack_a, stack_b);
+	print(stack_a, stack_b);
+	pb(head);
+	printf("3)stack_a[%p]:%d stack_b[%p]\n", head->stack_a, head->stack_a->num, head->stack_b);
+	printf("4)stack_a[%p]:%d stack_b[%p]\n", stack_a, stack_a->num, stack_b);
 	print(stack_a, stack_b);
 	free_stack(stack_a);
 	free_stack(stack_b);
+	free(head);
 
 	return (0);
 }
