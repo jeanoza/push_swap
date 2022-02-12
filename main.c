@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/12 21:41:55 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/12 21:44:11 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	main(int ac, char **av)
 	free_stack(head->stack_a);
 	free_stack(head->stack_b);
 	free(head);
-
 	return (0);
 }
 
