@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/12 21:19:11 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/13 11:56:20 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	*init_array(int ac, char **av)
 
 	arr = malloc(sizeof(int) * ac);
 	i = -1;
+	//TODO:data validation to add in 'ft_atoi' ex:if !digit => ERROR && EXIT
 	while (++i < ac)
 		arr[i] = atoi(av[i]);
 	quick_sort(arr, 0, ac - 1);

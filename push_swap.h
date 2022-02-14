@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/12 21:36:39 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/14 22:47:55 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ t_head	*init(int ac, char **av);
 
 /* quick_sort.c */
 int		*quick_sort(int *arr, int left, int right);
+
+/* print.c */
+void	print(t_head *head);
 
 /* stack.c */
 t_stack	*init_stack(int ac, char **av);
