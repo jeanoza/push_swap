@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/14 23:03:54 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/15 09:07:34 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ void	b_to_a(t_head *head, int pivot, t_stack *last);
 // void	a_to_b(t_head *head, int pivot, int count)
 void	a_to_b(t_head *head, int pivot, t_stack *last)
 {
+	printf("\n\n(a)last:%d", last->num);
+	print(head);
 	if (ft_stack_length(head->stack_a) == 1)
 		return ;
 	if (head->stack_a == last)
 	{
-		print(head);
 		b_to_a(head, head->stack_b->prev->num, head->stack_b->prev);
 		return ;
 	}
@@ -55,6 +56,9 @@ void	a_to_b(t_head *head, int pivot, t_stack *last)
 		pb(head);
 		// if (b_last && head->stack_b->num > b_last)
 		// 	rb(head);
+		if (ft_stack_length(head->stack_b) > 1
+			&& head->stack_b->num > head->stack_b->prev->num)
+			rb(head);
 	}
 	else
 	{
@@ -66,30 +70,25 @@ void	a_to_b(t_head *head, int pivot, t_stack *last)
 // void	b_to_a(t_head *head, int pivot, int count)
 void	b_to_a(t_head *head, int pivot, t_stack *last)
 {
+	printf("\n\n(b)last:%d", last->num);
+	print(head);
 	if (ft_stack_length(head->stack_b) == 1)
 	{
 		return ;
 	}
-	if (head->stack_b->num == pivot)
+	if (head->stack_b == last)
 	{
-		print(head);
 		a_to_b(head, head->stack_a->prev->num, head->stack_a->prev);
 		return ;
 	}
-	if (head->stack_b < last)
+	if (head->stack_b->num < pivot)
 	{
-		// int a_last;
-		// if (head->stack_a)
-		// {
-		// 	if (head->stack_a->prev)
-		// 	{
-		// 		a_last = head->stack_a->prev->num;
-		// 	}
-		// }
-		// printf("a_last:%d head->stack_b:%d\n", a_last, head->stack_b->num);
 		pa(head);
 		// if (a_last && head->stack_a->num > a_last)
 		// 	ra(head);
+		if (ft_stack_length(head->stack_a) > 1
+			&& head->stack_a->num > head->stack_a->prev->num)
+			ra(head);
 	}
 	else
 	{
