@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/17 20:33:16 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/17 21:23:34 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int	main(int ac, char **av)
 {
 	t_head	*head;
-	t_stack	*last;
 
 	head = init(ac - 1, av + 1);
 	if (!a_is_sorted(head, 0))
