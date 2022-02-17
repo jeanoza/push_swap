@@ -3,99 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/15 09:07:34 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/17 20:33:16 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_stack_length(t_stack *stack)
-{
-	int		count;
-	t_stack	*tmp;
-
-	if (stack == NULL)
-		return (0);
-	if (stack->next == NULL)
-		return (1);
-	else
-	{
-		count = 0;
-		tmp = stack;
-		while (count == 0 || tmp != stack)
-		{
-			++count;
-			tmp = tmp->next;
-		}
-	}
-	return (count);
-}
-
-// void	b_to_a(t_head *head, int pivot, int count);
-// void	a_to_b(t_head *head, int pivot, int count);
-void	a_to_b(t_head *head, int pivot, t_stack *last);
-void	b_to_a(t_head *head, int pivot, t_stack *last);
-
-// void	a_to_b(t_head *head, int pivot, int count)
-void	a_to_b(t_head *head, int pivot, t_stack *last)
-{
-	printf("\n\n(a)last:%d", last->num);
-	print(head);
-	if (ft_stack_length(head->stack_a) == 1)
-		return ;
-	if (head->stack_a == last)
-	{
-		b_to_a(head, head->stack_b->prev->num, head->stack_b->prev);
-		return ;
-	}
-	if (head->stack_a->num < pivot)
-	{
-		pb(head);
-		// if (b_last && head->stack_b->num > b_last)
-		// 	rb(head);
-		if (ft_stack_length(head->stack_b) > 1
-			&& head->stack_b->num > head->stack_b->prev->num)
-			rb(head);
-	}
-	else
-	{
-		ra(head);
-	}
-	a_to_b(head, pivot, last);
-}
-
-// void	b_to_a(t_head *head, int pivot, int count)
-void	b_to_a(t_head *head, int pivot, t_stack *last)
-{
-	printf("\n\n(b)last:%d", last->num);
-	print(head);
-	if (ft_stack_length(head->stack_b) == 1)
-	{
-		return ;
-	}
-	if (head->stack_b == last)
-	{
-		a_to_b(head, head->stack_a->prev->num, head->stack_a->prev);
-		return ;
-	}
-	if (head->stack_b->num < pivot)
-	{
-		pa(head);
-		// if (a_last && head->stack_a->num > a_last)
-		// 	ra(head);
-		if (ft_stack_length(head->stack_a) > 1
-			&& head->stack_a->num > head->stack_a->prev->num)
-			ra(head);
-	}
-	else
-	{
-		rb(head);
-	}
-	b_to_a(head, pivot, last);
-}
 
 //TODO:put validation function for input args
 int	main(int ac, char **av)
@@ -104,11 +19,13 @@ int	main(int ac, char **av)
 	t_stack	*last;
 
 	head = init(ac - 1, av + 1);
-	print(head);
-	a_to_b(head, head->median, head->stack_a->prev);
-	print(head);
+	if (!a_is_sorted(head, 0))
+	{
+		a_to_b(head, head->median, head->stack_a->prev);
+		pa(head);
+	}
 	free_stack(head->stack_a);
-	free_stack(head->stack_b);
+	free(head->sorted_arr);
 	free(head);
 	return (0);
 }

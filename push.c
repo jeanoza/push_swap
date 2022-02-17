@@ -6,42 +6,56 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:05:53 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/12 20:34:48 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/17 20:21:21 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push(t_stack **src, t_stack **dst)
+static t_stack	*pop(t_stack **stack)
 {
-	t_stack	*first;
-	t_stack	*last;
+	t_stack	*pop;
 
-	first = *src;
-	if (first == NULL)
-		return ;
-	last = first->prev;
-	*src = first->next;
-	if (*(src) == first)
-		*src = NULL;
+	if (!stack)
+		return (NULL);
+	if (!*stack)
+		return (NULL);
+	pop = *stack;
+	if (*stack == (*stack)->next)
+		*stack = 0;
 	else
 	{
-		(*src)->prev = last;
-		last->next = *src;
+		(*stack)->prev->next = (*stack)->next;
+		(*stack)->next->prev = (*stack)->prev;
+		*stack = (*stack)->next;
+		pop->prev = pop;
+		pop->next = pop;
 	}
-	first->prev = NULL;
-	first->next = NULL;
-	prepend_stack(dst, first);
+	return (pop);
+}
+
+static void	prepend(t_stack **stack_list, t_stack *new_stack)
+{
+	if (!stack_list || !new_stack)
+		return ;
+	if (*stack_list)
+	{
+		(*stack_list)->prev->next = new_stack;
+		new_stack->prev = (*stack_list)->prev;
+		(*stack_list)->prev = new_stack;
+		new_stack->next = *stack_list;
+	}
+	*stack_list = new_stack;
 }
 
 void	pb(t_head	*head)
 {
-	push(&(head->stack_a), &(head->stack_b));
+	prepend(&(head->stack_b), pop(&(head->stack_a)));
 	write(1, "pb\n", 3);
 }
 
 void	pa(t_head	*head)
 {
-	push(&(head->stack_b), &(head->stack_a));
+	prepend(&(head->stack_a), pop(&(head->stack_b)));
 	write(1, "pa\n", 3);
 }

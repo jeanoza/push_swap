@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/12 21:01:23 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/17 20:22:37 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_stack	*new_stack(int num)
 	return (stack);
 }
 
-void	append_stack(t_stack **stack_list, t_stack *new_stack)
+void	append(t_stack **stack_list, t_stack *new_stack)
 {
 	t_stack	*tmp;
 
@@ -42,33 +42,6 @@ void	append_stack(t_stack **stack_list, t_stack *new_stack)
 	new_stack->prev = tmp;
 }
 
-void	prepend_stack(t_stack **stack_list, t_stack *new_stack)
-{
-	t_stack	*first;
-	t_stack	*last;
-
-	if (!*stack_list)
-	{
-		*stack_list = new_stack;
-		return ;
-	}
-	first = *stack_list;
-	last = first->prev;
-	new_stack->next = first;
-	first->prev = new_stack;
-	if (last == NULL)
-	{
-		first->next = new_stack;
-		new_stack->prev = *stack_list;
-	}
-	else
-	{
-		last->next = new_stack;
-		new_stack->prev = last;
-	}
-	*stack_list = new_stack;
-}
-
 t_stack	*init_stack(int ac, char **av)
 {
 	int		i;
@@ -79,7 +52,7 @@ t_stack	*init_stack(int ac, char **av)
 	i = 0;
 	while (i < ac)
 	{
-		append_stack(&stack, new_stack(atoi(av[i])));
+		append(&stack, new_stack(atoi(av[i])));
 		++i;
 	}
 	tmp = stack;

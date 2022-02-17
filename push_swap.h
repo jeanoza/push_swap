@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/14 22:47:55 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/17 20:31:51 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_head
 	struct s_stack	*stack_b;
 	int				median;
 	int				length;
+	int				*sorted_arr;
 }	t_head;
 
 /* init.c */
@@ -45,8 +46,6 @@ void	print(t_head *head);
 
 /* stack.c */
 t_stack	*init_stack(int ac, char **av);
-void	append_stack(t_stack **stack_list, t_stack *new_stack);
-void	prepend_stack(t_stack **stack_list, t_stack *new_stack);
 void	free_stack(t_stack *stack);
 
 /* swap.c */
@@ -67,5 +66,10 @@ void	rr(t_head *head);
 void	rra(t_head *head);
 void	rrb(t_head *head);
 void	rrr(t_head *head);
+
+/* push_swap.c */
+int		a_is_sorted(t_head *head, int start_idx);
+void	a_to_b(t_head *head, int pivot, t_stack *last);
+void	b_to_a(t_head *head, int pivot, t_stack *last);
 
 #endif
