@@ -13,7 +13,7 @@ SRC_PATH	=	./src/
 SRCS		=	init.c \
 				main.c \
 				print.c \
-				push_swap.c \
+				algo.c \
 				push.c \
 				swap.c \
 				quick_sort.c \
