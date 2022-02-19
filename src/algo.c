@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/19 12:16:38 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 12:49:18 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ int	a_is_sorted(t_head *head, int start_idx)
 	i = 0;
 	while (i == 0 || tmp != head->stack_a)
 	{
-		if ((head->sorted_arr)[start_idx + i] != tmp->num)
+		if ((head->sorted_arr)[start_idx + i++] != tmp->num)
 			return (0);
-		++i;
 		tmp = tmp->next;
 	}
 	return (1);
