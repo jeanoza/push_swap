@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/19 11:38:37 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 12:01:18 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ int		*quick_sort(int *arr, int left, int right);
 void	print(t_head *head);
 
 /* stack.c */
-void	append(t_stack **stack_list, t_stack *new_stack);
-t_stack	*new_stack(int num);
-
 t_stack	*init_stack(int ac, char **av);
 void	free_stack(t_stack *stack);
 

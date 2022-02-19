@@ -6,14 +6,13 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/19 11:56:24 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 12:01:22 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// static t_stack	*new_stack(int num)
-t_stack	*new_stack(int num)
+static t_stack	*new_stack(int num)
 {
 	t_stack	*stack;
 
@@ -27,7 +26,7 @@ t_stack	*new_stack(int num)
 	return (stack);
 }
 
-void	append(t_stack **stack_list, t_stack *new_stack)
+static void	append(t_stack **stack_list, t_stack *new_stack)
 {
 	if (!stack_list || !new_stack)
 		return ;
