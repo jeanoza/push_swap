@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/19 15:08:57 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 20:35:55 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,14 @@ typedef struct s_head
 	struct s_stack	*stack_b;
 	int				median;
 	int				median_idx;
+	int				pivot_a;
+	int				pivot_b;
 	int				length;
 	int				*sorted_arr;
+	int				ra;
+	int				rb;
+	int				pa;
+	int				pb;
 }	t_head;
 
 /* init.c */
@@ -70,7 +76,10 @@ void	rrr(t_head *head);
 
 /* push_swap.c */
 int		a_is_sorted(t_head *head, int start_idx);
-void	a_to_b(t_head *head, int pivot, t_stack *last);
-void	b_to_a(t_head *head, int pivot, t_stack *last);
+// void	a_to_b(t_head *head, int pivot, int count);
+void	b_to_a(t_head *head, int pivot_a, int pivot_b, int count);
+void	a_to_b(t_head *head, int pivot_a, int pivot_b, int count);
+// void	b_to_a(t_head *head, int pivot, int count);
+int	stack_length(t_stack *stack);
 
 #endif

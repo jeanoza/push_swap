@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/19 15:19:17 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 20:21:50 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ int	main(int ac, char **av)
 {
 	t_head	*head;
 
-
 	head = init(ac - 1, av + 1);
-	a_to_b(head, head->median, head->stack_a->prev);
-	// if (!a_is_sorted(head, 0))
-	// if (!a_is_sorted(head, 0))
-	// {
-	// 	a_to_b(head, head->median, head->stack_a->prev);
-	// 	pa(head);
-	// }
+	a_to_b(head, (head->sorted_arr)[head->pivot_a], (head->sorted_arr)[head->pivot_b], stack_length(head->stack_a));
 	print(head);
+
+
+	// b_to_a(head, (head->sorted_arr)[head->median_idx / 2], stack_length(head->stack_b));
+	// print(head);
+
+
+
 	free_stack(head->stack_a);
 	free(head->sorted_arr);
 	free(head);

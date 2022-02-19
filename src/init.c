@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/19 14:31:42 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 20:21:37 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ static int	*init_array(int ac, char **av)
 	while (++i < ac)
 		arr[i] = atoi(av[i]);
 	quick_sort(arr, 0, ac - 1);
-	//FIXME: print pre-sort array
-	// i = -1;
-	// while (++i < ac)
-	// {
-	// 	if (i == 0)
-	// 		printf("\nPre-sort:\n[%d, ", arr[i]);
-	// 	else if (i == ac - 1)
-	// 		printf("%d]\n", arr[i]);
-	// 	else
-	// 		printf("%d, ", arr[i]);
-	// }
-	// printf("length: %d\nmedian: %d\n", ac, arr[ac / 2]);
+	// FIXME: print pre-sort array
+	i = -1;
+	while (++i < ac)
+	{
+		if (i == 0)
+			printf("\nPre-sort:\n[%d, ", arr[i]);
+		else if (i == ac - 1)
+			printf("%d]\n", arr[i]);
+		else
+			printf("%d, ", arr[i]);
+	}
+	printf("length: %d\nmedian: %d\n", ac, arr[ac / 2]);
 	return (arr);
 }
 
@@ -44,9 +44,15 @@ t_head	*init(int ac, char **av)
 
 	head = malloc(sizeof(t_head));
 	head->sorted_arr = init_array(ac, av);
-	head->median = (head->sorted_arr)[ac / 2];
-	head->median_idx = ac / 2;
+	head->median_idx = (ac - 1) / 2;
+	head->median = head->median_idx;
+	head->pivot_a = head->median_idx;
+	head->pivot_b = head->median_idx / 2;
 	head->length = ac;
+	head->ra = 0;
+	head->rb = 0;
+	head->pa = 0;
+	head->pb = 0;
 	head->stack_a = init_stack(ac, av);
 	head->stack_b = NULL;
 	return (head);

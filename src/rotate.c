@@ -22,12 +22,14 @@ static void	rotate(t_stack **stack)
 void	ra(t_head *head)
 {
 	rotate(&(head->stack_a));
+	++(head->ra);
 	write(1, "ra\n", 3);
 }
 
 void	rb(t_head *head)
 {
 	rotate(&(head->stack_b));
+	++(head->rb);
 	write(1, "rb\n", 3);
 }
 
