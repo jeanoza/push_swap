@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/19 10:56:35 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 12:16:38 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ int	stack_length(t_stack *stack)
 int	a_is_sorted(t_head *head, int start_idx)
 {
 	t_stack	*tmp;
+	int		i;
 
 	tmp = head->stack_a;
-	while (tmp && start_idx < head->length)
+	i = 0;
+	while (i == 0 || tmp != head->stack_a)
 	{
-		if ((head->sorted_arr)[start_idx] != tmp->num)
+		if ((head->sorted_arr)[start_idx + i] != tmp->num)
 			return (0);
-		++start_idx;
+		++i;
 		tmp = tmp->next;
 	}
 	return (1);
@@ -59,11 +61,6 @@ void	b_to_a(t_head *head, int pivot, t_stack *last)
 	if (head->stack_b->num > pivot)
 	{
 		pa(head);
-		if (stack_length(head->stack_a) > 1)
-		{
-			if (head->stack_a->num < head->stack_a->next->num)
-				sa(head);
-		}
 	}
 	else
 		rb(head);
