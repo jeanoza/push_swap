@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/17 21:41:34 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 10:56:35 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,6 @@ int	a_is_sorted(t_head *head, int start_idx)
 	return (1);
 }
 
-int	sorted_until(t_head *head, int start_idx)
-{
-	t_stack	*tmp;
-	int		i;
-
-	tmp = head->stack_a;
-	i = start_idx;
-	while (tmp && i < head->length)
-	{
-		if ((head->sorted_arr)[i] != tmp->num)
-			break ;
-		++i;
-		tmp = tmp->next;
-	}
-	return (i - start_idx);
-}
-
 void	b_to_a(t_head *head, int pivot, t_stack *last)
 {
 	if (head->stack_b == last)
@@ -89,7 +72,6 @@ void	b_to_a(t_head *head, int pivot, t_stack *last)
 
 void	a_to_b(t_head *head, int pivot, t_stack *last)
 {
-	printf("until:%d\n", sorted_until(head, 0));
 	if (stack_length(head->stack_b) == 1)
 	{
 		if (a_is_sorted(head, 1))
