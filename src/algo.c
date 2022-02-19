@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/19 12:49:18 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 13:03:41 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	a_is_sorted(t_head *head, int start_idx)
 
 void	b_to_a(t_head *head, int pivot, t_stack *last)
 {
+	print(head);
 	if (head->stack_b == last)
 	{
 		a_to_b(head, head->stack_a->prev->num, head->stack_a->prev);
@@ -68,6 +69,7 @@ void	b_to_a(t_head *head, int pivot, t_stack *last)
 
 void	a_to_b(t_head *head, int pivot, t_stack *last)
 {
+	print(head);
 	if (stack_length(head->stack_b) == 1)
 	{
 		if (a_is_sorted(head, 1))
@@ -77,18 +79,11 @@ void	a_to_b(t_head *head, int pivot, t_stack *last)
 	}
 	if (head->stack_a == last)
 	{
-		b_to_a(head, head->stack_b->prev->num, head->stack_b->prev);
+		b_to_a(head, head->median, head->stack_b->prev);
 		return ;
 	}
 	if (head->stack_a->num < pivot)
-	{
 		pb(head);
-		if (stack_length(head->stack_b) > 1)
-		{
-			if (head->stack_b->num < head->stack_b->next->num)
-				sb(head);
-		}
-	}
 	else
 		ra(head);
 	a_to_b(head, pivot, last);
