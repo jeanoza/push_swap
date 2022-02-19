@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/17 20:41:43 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 14:31:42 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_head	*init(int ac, char **av)
 	head = malloc(sizeof(t_head));
 	head->sorted_arr = init_array(ac, av);
 	head->median = (head->sorted_arr)[ac / 2];
+	head->median_idx = ac / 2;
 	head->length = ac;
 	head->stack_a = init_stack(ac, av);
 	head->stack_b = NULL;

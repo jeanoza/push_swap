@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/19 12:02:32 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/19 15:08:57 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_head
 	struct s_stack	*stack_a;
 	struct s_stack	*stack_b;
 	int				median;
+	int				median_idx;
 	int				length;
 	int				*sorted_arr;
 }	t_head;
