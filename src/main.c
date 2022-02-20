@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/20 14:31:46 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/20 22:21:51 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	main(int ac, char **av)
 	head = init(ac - 1, av + 1);
 	while (stack_length(head->stack_a) > 3)
 	{
-		// print(head);
 		init_array(head->stack_a, head);
 		a_to_b(head, head->sorted_arr[head->median_idx], head->sorted_arr[head->median_idx / 2], stack_length(head->stack_a));
 		while (head->rb > 0)
@@ -57,17 +56,20 @@ int	main(int ac, char **av)
 			rrb(head);
 			--head->rb;
 		}
-		// print(head);
+		print(head);
 	}
 	sort_three_a(head);
 	print(head);
-	init_array(head->stack_b, head);
-	b_to_a(head, head->sorted_arr[head->median_idx], head->sorted_arr[head->median_idx / 2], stack_length(head->stack_b));
-	print(head);
-	// while (stack_length(head->stack_b) > 1)
+	head->ra = 0;
+	// while (stack_length(head->stack_b) > 0)
 	// {
 	// 	init_array(head->stack_b, head);
-	// 	b_to_a(head, head->sorted_arr[head->median_idx], head->sorted_arr[head->median_idx / 2], stack_length(head->stack_b));
+	// 	b_to_a(head, head->sorted_arr[head->median_idx], head->sorted_arr[head->median_idx / 2], 3);
+	// 	// while (head->ra > 0)
+	// 	// {
+	// 	// 	rra(head);
+	// 	// 	--head->ra;
+	// 	// }
 	// 	sort_three_a(head);
 	// 	print(head);
 	// }

@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/20 14:29:40 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/20 22:32:44 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,32 @@ int ft_abs(int num)
 // void	b_to_a(t_head *head, int pivot, int count)
 void	b_to_a(t_head *head, int pivot1, int pivot2, int count)
 {
-	// print(head);
 	printf("(b_to_a)pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
-	if (count == 0)
+	if (count == 0 || !head->stack_b)
 	{
-		// printf("(b_to_a)pivot1:%d pivot_b:%d ra:%d rb:%d pa:%d pb:%d\n", pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
-		head->pb = 0;
+		print(head);
+		printf("(b_to_a)pivot1:%d pivot_b:%d ra:%d rb:%d pa:%d pb:%d\n", pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
+		// head->pb = 0;
 		return ;
 	}
-	if (head->stack_b->num > pivot2)
+	// if (head->pa == 3)
+	// {
+	// 	sort_three_a(head);
+	// 	head->pa = 0;
+	// }
+	// if (head->stack_b->num == head->sorted_arr[stack_length(head->stack_b) - 1])
+	// {
+	// 	pa(head);
+		// init_array(head->stack_b, head);
+	// }
+	else if (head->stack_b->num >= pivot2)
 	{
 		pa(head);
-		if (head->pa == 3)
-			sort_three_a(head);
-		// if (head->stack_a->num > pivot1)
+		// if (head->stack_a->num < pivot1)
 		// 	ra(head);
 	}
 	else
-	{
 		rb(head);
-	}
 	b_to_a(head, pivot1, pivot2, count - 1);
 }
 
@@ -88,7 +94,8 @@ void	a_to_b(t_head *head, int pivot1, int pivot2, int count)
 {
 	if (count == 0)
 	{
-		// printf("(a_to_b)pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
+		print(head);
+		printf("(a_to_b)pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
 		return ;
 	}
 	if (head->stack_a->num < pivot1)

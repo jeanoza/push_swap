@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/20 13:52:14 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/20 20:53:09 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_head
 	struct s_stack	*stack_b;
 	int				median_idx;
 	int				*sorted_arr;
+	int				length;
 	int				ra;
 	int				rb;
 	int				pa;

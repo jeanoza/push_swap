@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/20 13:48:17 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/20 22:34:09 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_array(int *arr, int size)
 		else
 			printf("%d, ", arr[i]);
 	}
-	printf("size: %d\nmedian: %d\n", size, arr[size / 2]);
+	printf("size: %d\nmedian: %d\n", size, arr[(size - 1) / 2]);
 
 }
 void	init_array(t_stack *stack, t_head *head)
@@ -52,7 +52,8 @@ void	init_array(t_stack *stack, t_head *head)
 	}
 	quick_sort(head->sorted_arr, 0, size - 1);
 	head->median_idx = (size - 1) / 2;
-	// print_array(head->sorted_arr, size);
+	head->length = size;
+	print_array(head->sorted_arr, size);
 }
 
 t_head	*init(int ac, char **av)
