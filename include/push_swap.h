@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/19 20:35:55 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/20 13:52:14 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,7 @@ typedef struct s_head
 {
 	struct s_stack	*stack_a;
 	struct s_stack	*stack_b;
-	int				median;
 	int				median_idx;
-	int				pivot_a;
-	int				pivot_b;
-	int				length;
 	int				*sorted_arr;
 	int				ra;
 	int				rb;
@@ -42,8 +38,11 @@ typedef struct s_head
 	int				pb;
 }	t_head;
 
+void	sort_three_a(t_head *head);
+
 /* init.c */
 t_head	*init(int ac, char **av);
+void	init_array(t_stack *stack, t_head *head);
 
 /* quick_sort.c */
 int		*quick_sort(int *arr, int left, int right);
