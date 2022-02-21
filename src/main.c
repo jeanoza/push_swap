@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 21:51:46 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/20 22:21:51 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/21 09:22:44 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,35 +47,17 @@ int	main(int ac, char **av)
 	t_head	*head;
 
 	head = init(ac - 1, av + 1);
-	while (stack_length(head->stack_a) > 3)
-	{
+	// while (stack_length(head->stack_a) > 3)
+	// {
 		init_array(head->stack_a, head);
 		a_to_b(head, head->sorted_arr[head->median_idx], head->sorted_arr[head->median_idx / 2], stack_length(head->stack_a));
-		while (head->rb > 0)
-		{
-			rrb(head);
-			--head->rb;
-		}
-		print(head);
-	}
-	sort_three_a(head);
 	print(head);
-	head->ra = 0;
-	// while (stack_length(head->stack_b) > 0)
-	// {
-	// 	init_array(head->stack_b, head);
-	// 	b_to_a(head, head->sorted_arr[head->median_idx], head->sorted_arr[head->median_idx / 2], 3);
-	// 	// while (head->ra > 0)
-	// 	// {
-	// 	// 	rra(head);
-	// 	// 	--head->ra;
-	// 	// }
-	// 	sort_three_a(head);
-	// 	print(head);
+		init_array(head->stack_b, head);
+		b_to_a(head, head->sorted_arr[head->median_idx], head->sorted_arr[head->median_idx / 2], 1);
+	print(head);
 	// }
-
-	// print(head);
-
+	print(head);
+	// sort_three_a(head);
 	free_stack(head->stack_a);
 	free_stack(head->stack_b);
 	free(head->sorted_arr);
