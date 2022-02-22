@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/21 09:22:48 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/22 09:23:59 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,38 +57,10 @@ int ft_abs(int num)
 	return (num);
 }
 
-// void	b_to_a(t_head *head, int pivot, int count)
 void	b_to_a(t_head *head, int pivot1, int pivot2, int count)
 {
-	printf("(b_to_a)pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
-	if (count == 0 || !head->stack_b)
-	{
-		// while (head->ra > 0)
-		// {
-		// 	rra(head);
-		// 	--head->ra;
-		// }
-		// while (head->rb > 0)
-		// {
-		// 	rrb(head);
-		// 	--head->rb;
-		// }
-		return ;
-	}
-	if (head->stack_b->num >= pivot2)
-	{
-		pa(head);
-		if (head->stack_a->num < pivot1)
-			ra(head);
-	}
-	else
-		rb(head);
-	b_to_a(head, pivot1, pivot2, count - 1);
-}
-
-// void	a_to_b(t_head *head, int pivot, int count)
-void	a_to_b(t_head *head, int pivot1, int pivot2, int count)
-{
+	printf("		(b_to_a)count:%d pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", count, pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
+	print(head);
 	if (count == 0)
 	{
 		while (head->ra > 0)
@@ -102,14 +74,50 @@ void	a_to_b(t_head *head, int pivot1, int pivot2, int count)
 			--head->rb;
 		}
 		print(head);
-		printf("(a_to_b)pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
 		return ;
 	}
-	if (head->stack_a->num < pivot1)
+	if (head->stack_b->num >= pivot1)
+	{
+		pa(head);
+		if (head->stack_a->num < pivot2)
+		{
+			ra(head);
+		}
+	}
+	else
+		rb(head);
+	b_to_a(head, pivot1, pivot2, count - 1);
+}
+
+void	a_to_b(t_head *head, int pivot1, int pivot2, int count)
+{
+	printf("		(a_to_b)count:%d pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", count, pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
+	print(head);
+	if (count == 0)
+	{
+		while (head->ra > 0)
+		{
+			rra(head);
+			--head->ra;
+		}
+		while (head->rb > 0)
+		{
+			rrb(head);
+			--head->rb;
+		}
+		print(head);
+		init_array(head->stack_b, head);
+		b_to_a(head, head->sorted_arr[head->median_idx] , head->sorted_arr[head->median_idx + (head->median_idx / 2)], head->pb);
+		head->pb = 0;
+		return ;
+	}
+	if (head->stack_a->num <= pivot1)
 	{
 		pb(head);
 		if (head->stack_b->num > pivot2)
+		{
 			rb(head);
+		}
 	}
 	else
 	{
@@ -117,32 +125,3 @@ void	a_to_b(t_head *head, int pivot1, int pivot2, int count)
 	}
 	a_to_b(head, pivot1, pivot2, count - 1);
 }
-// if (stack_length(head->stack_b) == 1)
-// {
-// 	if (a_is_sorted(head, 1))
-// 		return ;
-// 	else
-// 		last = head->stack_a->prev;
-// }
-
-		// head->median_idx += head->median_idx / 2;
-		// 	return ;
-
-		// while ((head->ra) > 0 && (head->rb) > 0)
-		// {
-		// 	rrr(head);
-		// 	--head->ra;
-		// 	--head->rb;
-		// }
-		// while ((head->ra) > 0)
-		// {
-		// 	rra(head);
-		// 	--head->ra;
-		// }
-		// while ((head->rb) > 0)
-		// {
-		// 	rrb(head);
-		// 	--head->rb;
-		// }
-		// print(head);
-		// head->pb = 0;
