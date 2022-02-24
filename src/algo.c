@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/22 09:23:59 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/23 20:06:09 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,71 +57,63 @@ int ft_abs(int num)
 	return (num);
 }
 
+void	clean_up_stack(t_head *head)
+{
+	int	i;
+
+	i = 0;
+	while (i < head->ra)
+	{
+		rra(head);
+		++i;
+	}
+	i = 0;
+	while (i < head->rb)
+	{
+		rrb(head);
+		++i;
+	}
+}
+
 void	b_to_a(t_head *head, int pivot1, int pivot2, int count)
 {
 	printf("		(b_to_a)count:%d pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", count, pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
-	print(head);
+	// print(head);
 	if (count == 0)
 	{
-		while (head->ra > 0)
-		{
-			rra(head);
-			--head->ra;
-		}
-		while (head->rb > 0)
-		{
-			rrb(head);
-			--head->rb;
-		}
+		clean_up_stack(head);
 		print(head);
 		return ;
 	}
-	if (head->stack_b->num >= pivot1)
+	if (head->stack_b->num > pivot1)
 	{
 		pa(head);
-		if (head->stack_a->num < pivot2)
-		{
+		if (head->stack_a->num <= pivot2)
 			ra(head);
-		}
 	}
 	else
 		rb(head);
+	// print(head);
 	b_to_a(head, pivot1, pivot2, count - 1);
 }
 
 void	a_to_b(t_head *head, int pivot1, int pivot2, int count)
 {
 	printf("		(a_to_b)count:%d pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", count, pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
-	print(head);
 	if (count == 0)
 	{
-		while (head->ra > 0)
-		{
-			rra(head);
-			--head->ra;
-		}
-		while (head->rb > 0)
-		{
-			rrb(head);
-			--head->rb;
-		}
+		clean_up_stack(head);
 		print(head);
-		init_array(head->stack_b, head);
-		b_to_a(head, head->sorted_arr[head->median_idx] , head->sorted_arr[head->median_idx + (head->median_idx / 2)], head->pb);
-		head->pb = 0;
 		return ;
 	}
-	if (head->stack_a->num <= pivot1)
+	if (head->stack_a->num < pivot1)
 	{
 		pb(head);
-		if (head->stack_b->num > pivot2)
-		{
+		if (head->stack_b->num >= pivot2)
 			rb(head);
-		}
 	}
 	else
-	{
 		ra(head);
-	}
+	// print(head);
 	a_to_b(head, pivot1, pivot2, count - 1);
 }
