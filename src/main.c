@@ -45,46 +45,14 @@ void	sort_three_a(t_head *head)
 int	main(int ac, char **av)
 {
 	t_head	*head;
-	// int	ra_tmp;
-	// int rb_tmp;
-	int	i;
-
 	head = init(ac - 1, av + 1);
-	// init_array(head->stack_a, head, 0);
-	// print(head);
 
-	// i = 0;
-	init_array(head->stack_a, head, 0);
-	a_to_b(head, head->sorted_arr[head->median_idx],
-		head->sorted_arr[head->median_idx / 2], stack_length(head->stack_a));
-	print(head);
-
-	// init_array(head->stack_b, head, 1);
-	b_to_a(head, head->sorted_arr[head->median_idx],
-		head->sorted_arr[head->median_idx / 2], head->pb);
-	head->pb = 0;
-	print(head);
-
-	i = 1;
-	int	pivot1;
-	int	pivot2;
-	while (i < 10)
+	while (stack_length(head->stack_a) > 3)
 	{
-		pivot1 = head->sorted_arr[head->median_idx / i];
-		pivot2 = head->sorted_arr[head->median_idx / (i * 2)];
-		// init_array(head->stack_a, head, 1);
-		a_to_b(head, pivot1, pivot2, stack_length(head->stack_a));
-		head->pa = 0;
-		print(head);
-
-		// init_array(head->stack_b, head, 1);
-		a_to_b(head, pivot1, pivot2, head->pb);
-		head->pb = 0;
-		print(head);
-
-		++i;
+		init_array(head->stack_a, head, 0);
+		a_to_b(head, head->sorted_arr[head->median_idx],
+			head->sorted_arr[head->median_idx / 2], stack_length(head->stack_a));
 	}
-
 
 
 	free_stack(head->stack_a);
