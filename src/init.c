@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/21 21:03:22 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/24 09:29:20 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,23 @@ void	print_array(int *arr, int size)
 			printf("%d, ", arr[i]);
 	}
 	printf("size: %d\nmedian: %d\n", size, arr[(size - 1) / 2]);
-
 }
-void	init_array(t_stack *stack, t_head *head)
+
+/*!
+ * @note this void function is to init sorted_arr in @struct head
+ * @param stack 
+ * @param head 
+ * @param already_exist  0 | 1 to verify if the array is already malloacated
+ */
+void	init_array(t_stack *stack, t_head *head, char already_exist)
 {
 	int		size;
 	t_stack	*tmp;
 	int		i;
 
-	size = stack_length(stack);
-	if (head->sorted_arr)
+	if (already_exist)
 		free(head->sorted_arr);
+	size = stack_length(stack);
 	head->sorted_arr = malloc(sizeof(int) * size);
 	if (!head->sorted_arr)
 		return ;

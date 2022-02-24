@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/23 20:06:09 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/24 12:51:20 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,17 @@ void	clean_up_stack(t_head *head)
 		rrb(head);
 		++i;
 	}
+	head->ra = 0;
+	head->rb = 0;
 }
 
 void	b_to_a(t_head *head, int pivot1, int pivot2, int count)
 {
 	printf("		(b_to_a)count:%d pivot1:%d pivot2:%d ra:%d rb:%d pa:%d pb:%d\n", count, pivot1, pivot2, head->ra, head->rb, head->pa, head->pb);
-	// print(head);
 	if (count == 0)
 	{
 		clean_up_stack(head);
-		print(head);
+		// a_to_b(head, pivot1, pivot2, count - 1);
 		return ;
 	}
 	if (head->stack_b->num > pivot1)
@@ -103,7 +104,6 @@ void	a_to_b(t_head *head, int pivot1, int pivot2, int count)
 	if (count == 0)
 	{
 		clean_up_stack(head);
-		print(head);
 		return ;
 	}
 	if (head->stack_a->num < pivot1)

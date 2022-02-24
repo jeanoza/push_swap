@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/20 20:53:09 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/24 09:10:34 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	sort_three_a(t_head *head);
 
 /* init.c */
 t_head	*init(int ac, char **av);
-void	init_array(t_stack *stack, t_head *head);
+void	init_array(t_stack *stack, t_head *head, char opt);
 
 /* quick_sort.c */
 int		*quick_sort(int *arr, int left, int right);
@@ -76,10 +76,8 @@ void	rrr(t_head *head);
 
 /* push_swap.c */
 int		a_is_sorted(t_head *head, int start_idx);
-// void	a_to_b(t_head *head, int pivot, int count);
 void	b_to_a(t_head *head, int pivot_a, int pivot_b, int count);
 void	a_to_b(t_head *head, int pivot_a, int pivot_b, int count);
-// void	b_to_a(t_head *head, int pivot, int count);
-int	stack_length(t_stack *stack);
+int		stack_length(t_stack *stack);
 
 #endif
