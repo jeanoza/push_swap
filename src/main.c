@@ -13,49 +13,16 @@
 #include "push_swap.h"
 
 //TODO:put validation function for input args
-void	sort_three_a(t_head *head)
-{
-	int		first;
-	int		second;
-	int		third;
-
-	first = head->stack_a->num;
-	second = head->stack_a->next->num;
-	third = head->stack_a->next->next->num;
-	if (first < second && second < third)
-		;
-	else if (first < second && second > third && first < third)
-	{
-		sa(head);
-		ra(head);
-	}
-	else if (first > second && second < third && first < third)
-		sa(head);
-	else if (first < second && second > third && first > third)
-		rra(head);
-	else if (first > second && second < third && first > third)
-		ra(head);
-	else if (first > second && second > third)
-	{
-		ra(head);
-		sa(head);
-	}
-}
 
 int	main(int ac, char **av)
 {
 	t_head	*head;
 	head = init(ac - 1, av + 1);
 
-	while (stack_length(head->stack_a) > 3)
-	{
-		init_array(head->stack_a, head, 0);
-		a_to_b(head, head->sorted_arr[head->median_idx],
-			head->sorted_arr[head->median_idx / 2], stack_length(head->stack_a));
-	}
+	a_to_b(head, stack_length(head->stack_a));
 
 
-	free_stack(head->stack_a);
+	// free_stack(head->stack_a);
 	// free_stack(head->stack_b);
 	free(head->sorted_arr);
 	free(head);

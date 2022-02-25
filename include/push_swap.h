@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/24 09:10:34 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/25 11:59:06 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_head
 	struct s_stack	*stack_a;
 	struct s_stack	*stack_b;
 	int				median_idx;
+	int				small_idx;
+	int				big_idx;
 	int				*sorted_arr;
 	int				length;
 	int				ra;
@@ -61,13 +63,13 @@ void	sb(t_head	*head);
 void	ss(t_head	*head);
 
 /* push.c */
-void	pb(t_head	*head);
-void	pa(t_head	*head);
+void	pb(t_head	*head, int *count);
+void	pa(t_head	*head, int *count);
 
 /* rotate.c */
-void	ra(t_head *head);
-void	rb(t_head *head);
-void	rr(t_head *head);
+void	ra(t_head *head, int *count);
+void	rb(t_head *head, int *count);
+void	rr(t_head *head, int *count_a, int *count_b);
 
 /* reverse_rotate.c */
 void	rra(t_head *head);
@@ -76,8 +78,8 @@ void	rrr(t_head *head);
 
 /* push_swap.c */
 int		a_is_sorted(t_head *head, int start_idx);
-void	b_to_a(t_head *head, int pivot_a, int pivot_b, int count);
-void	a_to_b(t_head *head, int pivot_a, int pivot_b, int count);
+void	b_to_a(t_head *head, int count);
+void	a_to_b(t_head *head, int count);
 int		stack_length(t_stack *stack);
 
 #endif

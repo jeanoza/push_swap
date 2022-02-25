@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/24 09:29:20 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/25 12:12:00 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // FIXME: print pre-sort array
-void	print_array(int *arr, int size)
+void	print_array(t_head *head)
 {
 	int		i;
 
 	i = -1;
-	while (++i < size)
+	while (++i < head->length)
 	{
 		if (i == 0)
-			printf("\nPre-sort:\n[%d, ", arr[i]);
-		else if (i == size - 1)
-			printf("%d]\n", arr[i]);
+			printf("\nPre-sort:\n[");
+		if (i == head->length - 1)
+			printf("%d]\n", head->sorted_arr[i]);
 		else
-			printf("%d, ", arr[i]);
+			printf("%d, ", head->sorted_arr[i]);
 	}
-	printf("size: %d\nmedian: %d\n", size, arr[(size - 1) / 2]);
+	printf("size: %d median: %d small: %d big: %d\n", head->length, head->sorted_arr[head->median_idx], head->sorted_arr[head->small_idx], head->sorted_arr[head->big_idx]);
 }
 
 /*!
@@ -36,6 +36,7 @@ void	print_array(int *arr, int size)
  * @param head 
  * @param already_exist  0 | 1 to verify if the array is already malloacated
  */
+//TODO:data validation to add in 'ft_atoi' ex:if !digit => ERROR && EXIT
 void	init_array(t_stack *stack, t_head *head, char already_exist)
 {
 	int		size;
@@ -48,7 +49,6 @@ void	init_array(t_stack *stack, t_head *head, char already_exist)
 	head->sorted_arr = malloc(sizeof(int) * size);
 	if (!head->sorted_arr)
 		return ;
-	//TODO:data validation to add in 'ft_atoi' ex:if !digit => ERROR && EXIT
 	i = -1;
 	tmp = stack;
 	while (++i == 0 || tmp != stack)
@@ -58,8 +58,13 @@ void	init_array(t_stack *stack, t_head *head, char already_exist)
 	}
 	quick_sort(head->sorted_arr, 0, size - 1);
 	head->median_idx = (size - 1) / 2;
+	head->small_idx = (size - 1) / 4;
+	head->big_idx = head->median_idx + head->small_idx + 1;
+	if (size == 1)
+		head->big_idx = 0;
 	head->length = size;
-	print_array(head->sorted_arr, size);
+	print(head);
+	print_array(head);
 }
 
 t_head	*init(int ac, char **av)
