@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/25 19:53:54 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/25 20:42:47 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,10 @@ int		is_desc(t_stack *stack, int count)
 	{
 		printf("\n(is_desc) count:%d num:%d next->num:%d\n", count, tmp->num, tmp->next->num);
 		if (tmp->num < tmp->next->num)
+		{
+			
 			return (0);
+		}
 		tmp = tmp->next;
 		--count;
 	}

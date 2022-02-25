@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:36:49 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/25 19:54:39 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/25 21:09:39 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,15 @@ void	a_to_b(t_head *head, int count)
     print(head);
 
     if (check_stack_a(head, count))
-    {
-        printf("check stack_a\n");
-        printf("max_test:%d\n", max_num(head->stack_a, 3));
         return;
-    }
     while (count > 0)
     {
-        if (head->stack_a->num < head->sorted_arr[head->big_idx])
+        // if (head->stack_a->num < head->sorted_arr[head->big_idx])
+        if (head->stack_a->num < head->sorted_arr[head->median_idx])
         {
             pb(head, &pb_count);
-            if (head->stack_b->num >= head->sorted_arr[head->median_idx])
+            // if (head->stack_b->num >= head->sorted_arr[head->median_idx])
+            if (head->stack_b->num >= head->stack_b->next->num)
                 rb(head, &rb_count);
         }
         else

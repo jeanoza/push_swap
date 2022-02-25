@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/25 12:12:00 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/25 20:50:09 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	init_array(t_stack *stack, t_head *head, char already_exist)
 	if (size == 1)
 		head->big_idx = 0;
 	head->length = size;
-	print(head);
+	// print(head);
 	print_array(head);
 }
 
