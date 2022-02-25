@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:05:53 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/25 11:34:56 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/25 17:36:26 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ static void	prepend(t_stack **stack_list, t_stack *new_stack)
 void	pb(t_head	*head, int *count)
 {
 	prepend(&(head->stack_b), pop(&(head->stack_a)));
-	*count += 1;
+	if (count)
+		*count += 1;
 	write(1, "pb\n", 3);
 }
 
 void	pa(t_head	*head, int *count)
 {
 	prepend(&(head->stack_a), pop(&(head->stack_b)));
-	*count += 1;
+	if (count)
+		*count += 1;
 	write(1, "pa\n", 3);
 }

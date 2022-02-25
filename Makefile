@@ -20,6 +20,8 @@ SRCS		=	init.c \
 				reverse_rotate.c \
 				rotate.c \
 				stack.c \
+				a_to_b.c\
+				b_to_a.c\
 
 OBJ_PATH	=	./bin/
 

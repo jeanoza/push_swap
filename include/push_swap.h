@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/25 11:59:06 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/25 19:42:33 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_head
 	int				pb;
 }	t_head;
 
-void	sort_three_a(t_head *head);
 
 /* init.c */
 t_head	*init(int ac, char **av);
@@ -76,10 +75,19 @@ void	rra(t_head *head);
 void	rrb(t_head *head);
 void	rrr(t_head *head);
 
-/* push_swap.c */
-int		a_is_sorted(t_head *head, int start_idx);
-void	b_to_a(t_head *head, int count);
-void	a_to_b(t_head *head, int count);
+/* algo.c */
 int		stack_length(t_stack *stack);
+void	clean_up_stack(t_head *head, int count_a, int count_b);
+void	sort_three_a(t_head *head);
+int		is_asc(t_stack *stack, int count);
+int		is_desc(t_stack *stack, int count);
+int	min_num(t_stack *stack, int count);
+int	max_num(t_stack *stack, int count);
+
+/* a_to_b */
+void	a_to_b(t_head *head, int count);
+/* b_to_a */
+void	b_to_a(t_head *head, int count);
+
 
 #endif
