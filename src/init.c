@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/25 20:50:09 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:07:02 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@ void	print_array(t_head *head)
  * @param already_exist  0 | 1 to verify if the array is already malloacated
  */
 //TODO:data validation to add in 'ft_atoi' ex:if !digit => ERROR && EXIT
-void	init_array(t_stack *stack, t_head *head, char already_exist)
+void	init_array(t_stack *stack, t_head *head, int size)
 {
-	int		size;
 	t_stack	*tmp;
 	int		i;
 
-	if (already_exist)
+	if (size != head->ac)
 		free(head->sorted_arr);
-	size = stack_length(stack);
 	head->sorted_arr = malloc(sizeof(int) * size);
 	if (!head->sorted_arr)
 		return ;
@@ -63,8 +61,6 @@ void	init_array(t_stack *stack, t_head *head, char already_exist)
 	if (size == 1)
 		head->big_idx = 0;
 	head->length = size;
-	// print(head);
-	print_array(head);
 }
 
 t_head	*init(int ac, char **av)
@@ -72,11 +68,8 @@ t_head	*init(int ac, char **av)
 	t_head	*head;
 
 	head = malloc(sizeof(t_head));
-	head->ra = 0;
-	head->rb = 0;
-	head->pa = 0;
-	head->pb = 0;
 	head->stack_a = init_stack(ac, av);
 	head->stack_b = NULL;
+	head->ac = ac;
 	return (head);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/25 19:42:33 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/26 13:07:17 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,13 @@ typedef struct s_head
 	int				big_idx;
 	int				*sorted_arr;
 	int				length;
-	int				ra;
-	int				rb;
-	int				pa;
-	int				pb;
+	int				ac;
 }	t_head;
 
 
 /* init.c */
 t_head	*init(int ac, char **av);
-void	init_array(t_stack *stack, t_head *head, char opt);
+void	init_array(t_stack *stack, t_head *head, int size);
 
 /* quick_sort.c */
 int		*quick_sort(int *arr, int left, int right);

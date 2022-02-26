@@ -3,14 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   a_to_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:36:49 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/25 21:09:39 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/02/26 12:59:05 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_three_a(t_head *head)
+{
+	int		first;
+	int		second;
+	int		third;
+
+	first = head->stack_a->num;
+	second = head->stack_a->next->num;
+	third = head->stack_a->next->next->num;
+	if (first < second && second < third)
+		return ;
+	else if (first < second && second > third && first < third)
+	{
+		sa(head);
+		ra(head, NULL);
+	}
+	else if (first > second && second < third && first < third)
+		sa(head);
+	else if (first < second && second > third && first > third)
+		rra(head);
+	else if (first > second && second < third && first > third)
+		ra(head, NULL);
+	else if (first > second && second > third)
+	{
+		ra(head, NULL);
+		sa(head);
+	}
+}
+
 
 void	a_to_b_count3(t_head *head)
 {
@@ -46,14 +76,9 @@ int		check_stack_a(t_head *head, int count)
 	if (count == 3 && stack_length(head->stack_a) == 3)
 		sort_three_a(head);
 	else if (count == 3)
-	{
 		a_to_b_count3(head);
-	}
 	if (is_asc(head->stack_a, count))
-	{
-		printf("(check_stack_a -> is_asc) here2, count:%d\n", count);
 		return (1);
-	}
 	return (0);
 }
 
@@ -66,28 +91,21 @@ void	a_to_b(t_head *head, int count)
     ra_count = 0;
     rb_count = 0;
     pb_count = 0;
-
-    init_array(head->stack_a, head, 0);
-    printf("(a_to_b)1 count:%d median:%d small:%d big:%d\n", count, head->sorted_arr[head->median_idx], head->sorted_arr[head->small_idx], head->sorted_arr[head->big_idx]);
-    print(head);
-
+	init_array(head->stack_a, head, count);
     if (check_stack_a(head, count))
         return;
     while (count > 0)
     {
-        // if (head->stack_a->num < head->sorted_arr[head->big_idx])
-        if (head->stack_a->num < head->sorted_arr[head->median_idx])
+        if (head->stack_a->num < head->sorted_arr[head->big_idx])
         {
             pb(head, &pb_count);
-            // if (head->stack_b->num >= head->sorted_arr[head->median_idx])
-            if (head->stack_b->num >= head->stack_b->next->num)
+            if (head->stack_b->num >= head->sorted_arr[head->median_idx])
                 rb(head, &rb_count);
         }
         else
             ra(head, &ra_count);
         --count;
     }
-    printf("(a_to_b)2 ra:%d rb:%d pb:%d \n", ra_count, rb_count, pb_count);
     clean_up_stack(head, ra_count, rb_count);
     a_to_b(head, ra_count);
     b_to_a(head, rb_count);

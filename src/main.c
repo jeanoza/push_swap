@@ -20,11 +20,11 @@ int	main(int ac, char **av)
 	head = init(ac - 1, av + 1);
 	a_to_b(head, stack_length(head->stack_a));
 
+	free_stack(head->stack_a);
 
-	// free_stack(head->stack_a);
-	// free_stack(head->stack_b);
 	free(head->sorted_arr);
 	free(head);
+
 	return (0);
 }
 
