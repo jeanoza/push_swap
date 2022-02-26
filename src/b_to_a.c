@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:40:15 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/26 13:00:53 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/26 15:53:10 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int		check_stack_b(t_head *head, int count)
 
 void	b_to_a(t_head *head, int count)
 {
+	int pivots[3];
 	int ra_count;
 	int	rb_count;
 	int pa_count;
@@ -53,15 +54,15 @@ void	b_to_a(t_head *head, int count)
 	rb_count = 0;
 	pa_count = 0;
 
-	init_array(head->stack_b, head, count);
+	init_array(head->stack_b, head, count, pivots);
 	if (check_stack_b(head, count))
 		return;
 	while (count > 0)
 	{
-		if (head->stack_b->num > head->sorted_arr[head->small_idx])
+		if (head->stack_b->num > pivots[1])
 		{
 			pa(head, &pa_count);
-			if (head->stack_a->num <= head->sorted_arr[head->median_idx])
+			if (head->stack_a->num <= pivots[0])
 				ra(head, &ra_count);
 		}
 		else

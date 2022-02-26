@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:36:49 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/26 12:59:05 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/26 15:29:49y kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int		check_stack_a(t_head *head, int count)
 
 void	a_to_b(t_head *head, int count)
 {
+	int pivots[3];
     int ra_count;
     int	rb_count;
     int pb_count;
@@ -91,15 +92,21 @@ void	a_to_b(t_head *head, int count)
     ra_count = 0;
     rb_count = 0;
     pb_count = 0;
-	init_array(head->stack_a, head, count);
+	init_array(head->stack_a, head, count, pivots);
+
+	int i = -1;
+
+	while (++i < 3)
+		printf("pivots[%d]: %d\n", i, pivots[i]);
     if (check_stack_a(head, count))
         return;
     while (count > 0)
     {
-        if (head->stack_a->num < head->sorted_arr[head->big_idx])
+        if (head->stack_a->num < pivots[2])
         {
             pb(head, &pb_count);
-            if (head->stack_b->num >= head->sorted_arr[head->median_idx])
+            // if (head->stack_b->num >= head->sorted_arr[head->median_idx])
+            if (head->stack_b->num >= pivots[0])
                 rb(head, &rb_count);
         }
         else

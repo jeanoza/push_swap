@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/20 11:33:09 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/26 15:26:55 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,22 @@ t_stack	*init_stack(int ac, char **av)
 
 void	free_stack(t_stack *stack)
 {
-	t_stack	*current;
-	t_stack	*next;
-
-	current = stack;
-	next = NULL;
-	while (current != NULL)
+	while (stack && stack != stack->next)
 	{
-		next = current->next;
-		free(current);
-		if (next == stack)
-			break ;
-		current = next;
+		free(stack);
+		stack = stack->next;
 	}
+	// t_stack	*current;
+	// t_stack	*next;
+
+	// current = stack;
+	// next = NULL;
+	// while (current != NULL)
+	// {
+	// 	next = current->next;
+	// 	free(current);
+	// 	if (next == stack)
+	// 		break ;
+	// 	current = next;
+	// }
 }
