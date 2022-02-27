@@ -19,10 +19,8 @@ int	main(int ac, char **av)
 	t_head	*head;
 	head = init(ac - 1, av + 1);
 	a_to_b(head, stack_length(head->stack_a));
-
+	print(head);
 	free_stack(head->stack_a);
-
-	free(head->sorted_arr);
 	free(head);
 
 	return (0);

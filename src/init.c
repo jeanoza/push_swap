@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/26 15:54:01 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 12:43:24 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ void	init_array(t_stack *stack, t_head *head, int size, int pivots[])
 	t_stack	*tmp;
 	int		i;
 
-	// if (size != head->ac)
-	// 	free(head->sorted_arr);
-	// head->sorted_arr = malloc(sizeof(int) * size);
-	// if (!head->sorted_arr)
-	// 	return ;
+	head->sorted_arr = malloc(sizeof(int) * size);
+	if (!head->sorted_arr)
+		return ;
 	i = -1;
 	tmp = stack;
 	while (++i == 0 || tmp != stack)
@@ -55,22 +53,14 @@ void	init_array(t_stack *stack, t_head *head, int size, int pivots[])
 		tmp = tmp->next;
 	}
 	quick_sort(head->sorted_arr, 0, size - 1);
-	// head->median_idx = (size - 1) / 2;
-	// head->small_idx = (size - 1) / 4;
-	// head->big_idx = head->median_idx + head->small_idx + 1;
-	// (*pivots)[0] = (size - 1) / 2;
-	// (*pivots)[1] = (size - 1) / 4;
-	// (*pivots)[1] = (*pivots)[0] + (*pivots)[1] + 1;
-	pivots[0] = (size - 1) / 2;
-	pivots[1] = (size - 1) / 4;
-	pivots[2] = pivots[0] + pivots[1] + 1;
+	pivots[0] = head->sorted_arr[(size - 1) / 2];
+	pivots[1] = head->sorted_arr[(size - 1) / 4];
+	pivots[2] = head->sorted_arr[(size - 1) / 2 + (size - 1) / 4 + 1];
 
 	if (size == 1)
-		pivots[1] = 0;
-		// (*pivots)[1] = 0;
-		// head->big_idx = 0;
+		pivots[2] = head->sorted_arr[0];
 	head->length = size;
-	// free(head->sorted_arr);
+	free(head->sorted_arr);
 }
 
 t_head	*init(int ac, char **av)
