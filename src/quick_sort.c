@@ -6,14 +6,11 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 23:39:35 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/13 11:53:42 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 22:04:35 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-#include <stdio.h>
-#include <stdlib.h>
+#include "push_swap.h"
 
 static void	quick_swap(int *arr, int i, int j)
 {

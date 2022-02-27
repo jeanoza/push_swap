@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 20:45:51 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 22:02:28 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	clean_up_stack(t_head *head, int count_a, int count_b)
 	}
 }
 
-int		is_desc(t_stack *stack, int count)
+int	is_desc(t_stack *stack, int count)
 {
 	while (stack && count > 1)
 	{
@@ -72,7 +72,7 @@ int		is_desc(t_stack *stack, int count)
 	}
 	return (1);
 }
-int		is_asc(t_stack *stack, int count)
+int	is_asc(t_stack *stack, int count)
 {
 	while (stack && count > 1)
 	{
