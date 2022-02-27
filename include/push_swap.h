@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 17:25:01 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 21:12:35 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ t_stack	*init_stack(int ac, char **av);
 void	free_stack(t_stack *stack);
 
 /* swap.c */
-void	sa(t_head	*head);
-void	sb(t_head	*head);
-void	ss(t_head	*head);
+void	sa(t_head *head);
+void	sb(t_head *head);
+void	ss(t_head *head);
 
 /* push.c */
-void	pb(t_head	*head);
-void	pa(t_head	*head);
+void	pb(t_head *head);
+void	pa(t_head *head);
 
 /* rotate.c */
 void	ra(t_head *head);
@@ -68,12 +68,13 @@ void	rrr(t_head *head);
 
 /* algo.c */
 int		stack_length(t_stack *stack);
+void	counts_to_zero(int *first, int *second, int *third);
 void	clean_up_stack(t_head *head, int count_a, int count_b);
 void	sort_three_a(t_head *head);
 int		is_asc(t_stack *stack, int count);
 int		is_desc(t_stack *stack, int count);
-int	min_num(t_stack *stack, int count);
-int	max_num(t_stack *stack, int count);
+int		min_num(t_stack *stack, int count);
+int		max_num(t_stack *stack, int count);
 
 /* a_to_b */
 void	a_to_b(t_head *head, int count);

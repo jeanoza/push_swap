@@ -6,13 +6,12 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 17:41:03 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 21:11:12 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// FIXME: print pre-sort array
 void	print_array(int *arr, int size, int *pivots)
 {
 	int		i;
@@ -32,12 +31,11 @@ void	print_array(int *arr, int size, int *pivots)
 }
 
 /*!
- * @note this void function is to init sorted_arr in @struct head
+ * init array every time a_to_b or b_to_a called, to get right pviots
  * @param stack 
- * @param head 
- * @param size 
+ * @param size it depends on @param count in a_to_b() or b_to_a()
+ * @param pivots pivots[0] = median, pivots[1] = small, pivots[2] = big
  */
-//TODO:data validation to add in 'ft_atoi' ex:if !digit => ERROR && EXIT
 void	init_array(t_stack *stack, int size, int *pivots)
 {
 	int		i;

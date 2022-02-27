@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/26 12:58:42 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 20:45:51 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ int	stack_length(t_stack *stack)
 		}
 	}
 	return (count);
+}
+
+void	counts_to_zero(int *first, int *second, int *third)
+{
+	*first = 0;
+	*second = 0;
+	*third = 0;
 }
 
 void	clean_up_stack(t_head *head, int count_a, int count_b)
