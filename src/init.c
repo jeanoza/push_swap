@@ -6,28 +6,28 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 12:43:24 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 16:43:36 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // FIXME: print pre-sort array
-void	print_array(t_head *head)
+void	print_array(t_head *head, int size, int *pivots)
 {
 	int		i;
 
 	i = -1;
-	while (++i < head->length)
+	while (++i < size)
 	{
 		if (i == 0)
 			printf("\nPre-sort:\n[");
-		if (i == head->length - 1)
+		if (i == size - 1)
 			printf("%d]\n", head->sorted_arr[i]);
 		else
 			printf("%d, ", head->sorted_arr[i]);
 	}
-	printf("size: %d median: %d small: %d big: %d\n", head->length, head->sorted_arr[head->median_idx], head->sorted_arr[head->small_idx], head->sorted_arr[head->big_idx]);
+	printf("pivots) median: %d	small: %d	big: %d\n", pivots[0], pivots[1], pivots[2]);
 }
 
 /*!
@@ -37,7 +37,7 @@ void	print_array(t_head *head)
  * @param size 
  */
 //TODO:data validation to add in 'ft_atoi' ex:if !digit => ERROR && EXIT
-void	init_array(t_stack *stack, t_head *head, int size, int pivots[])
+void	init_array(t_stack *stack, t_head *head, int size, int *pivots)
 {
 	t_stack	*tmp;
 	int		i;
@@ -56,11 +56,8 @@ void	init_array(t_stack *stack, t_head *head, int size, int pivots[])
 	pivots[0] = head->sorted_arr[(size - 1) / 2];
 	pivots[1] = head->sorted_arr[(size - 1) / 4];
 	pivots[2] = head->sorted_arr[(size - 1) / 2 + (size - 1) / 4 + 1];
-
 	if (size == 1)
 		pivots[2] = head->sorted_arr[0];
-	head->length = size;
-	free(head->sorted_arr);
 }
 
 t_head	*init(int ac, char **av)
@@ -70,6 +67,5 @@ t_head	*init(int ac, char **av)
 	head = malloc(sizeof(t_head));
 	head->stack_a = init_stack(ac, av);
 	head->stack_b = NULL;
-	head->ac = ac;
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:40:15 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/26 15:53:10 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 16:48:06 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ void	b_to_a(t_head *head, int count)
 			rb(head, &rb_count);
 		--count;
 	}
+	free(head->sorted_arr);
 	a_to_b(head, pa_count - ra_count);
 	clean_up_stack(head, ra_count, rb_count);
 	a_to_b(head, ra_count);
 	b_to_a(head, rb_count);
-
 }
 //a_to_b(pa-ra)
 //clean

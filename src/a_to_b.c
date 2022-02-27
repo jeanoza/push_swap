@@ -93,11 +93,6 @@ void	a_to_b(t_head *head, int count)
     rb_count = 0;
     pb_count = 0;
 	init_array(head->stack_a, head, count, pivots);
-
-	int i = -1;
-
-	while (++i < 3)
-		printf("pivots[%d]: %d\n", i, pivots[i]);
     if (check_stack_a(head, count))
         return;
     while (count > 0)
@@ -105,7 +100,6 @@ void	a_to_b(t_head *head, int count)
         if (head->stack_a->num < pivots[2])
         {
             pb(head, &pb_count);
-            // if (head->stack_b->num >= head->sorted_arr[head->median_idx])
             if (head->stack_b->num >= pivots[0])
                 rb(head, &rb_count);
         }
@@ -117,6 +111,7 @@ void	a_to_b(t_head *head, int count)
     a_to_b(head, ra_count);
     b_to_a(head, rb_count);
     b_to_a(head, pb_count - rb_count);
+	free(head->sorted_arr);
 }
 //clean
 //a_to_b(ra)
