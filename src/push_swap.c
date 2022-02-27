@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 10:21:19 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 22:28:38 by kyubongchoi      ###   ########.fr       */
+/*   Created: 2022/02/17 20:23:03 by kychoi            #+#    #+#             */
+/*   Updated: 2022/02/27 22:10:26 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int	result;
-	int	sign;
-	int	i;
+#include "push_swap.h"
 
-	result = 0;
-	sign = 1;
-	i = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		++i;
-	if (str[i] == '-' || str[i] == '+')
+void	counts_to_zero(int *first, int *second, int *third)
+{
+	*first = 0;
+	*second = 0;
+	*third = 0;
+}
+
+void	clean_up_stack(t_head *head, int count_a, int count_b)
+{
+	while (count_a > 0 && count_b > 0)
 	{
-		if (str[i] == '-')
-			sign = -sign;
-		++i;
+		rrr(head);
+		--count_a;
+		--count_b;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (count_a > 0)
 	{
-		result = (result * 10) + (str[i] - '0');
-		++i;
+		rra(head);
+		--count_a;
 	}
-	return (result * sign);
+	while (count_b > 0)
+	{
+		rrb(head);
+		--count_b;
+	}
 }

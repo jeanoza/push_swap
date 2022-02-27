@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 21:12:35 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 23:28:44 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
-
-//TODO:Remove this libs...
-# include <stdio.h>
-# include <string.h>
+# include "libft.h"
 
 typedef struct s_stack
 {
@@ -34,18 +31,34 @@ typedef struct s_head
 
 
 /* init.c */
-t_head	*init(int ac, char **av);
-void	init_array(t_stack *stack, int size, int *pivots);
+t_head	*init(int size, int *arr);
 
 /* quick_sort.c */
 int		*quick_sort(int *arr, int left, int right);
 
 /* print.c */
 void	print(t_head *head);
+void	print_array(int *arr, int size, int *pivots);
+
+/* utils.c */
+void	find_pivots(t_stack *stack, int size, int *pivots);
+void	free_stack(t_stack *stack);
 
 /* stack.c */
-t_stack	*init_stack(int ac, char **av);
-void	free_stack(t_stack *stack);
+int		stack_length(t_stack *stack);
+int		is_asc(t_stack *stack, int count);
+int		is_desc(t_stack *stack, int count);
+int		min_num(t_stack *stack, int count);
+int		max_num(t_stack *stack, int count);
+
+/* push_swap.c */
+void	counts_to_zero(int *first, int *second, int *third);
+void	clean_up_stack(t_head *head, int count_a, int count_b);
+
+/* a_to_b */
+void	a_to_b(t_head *head, int count);
+/* b_to_a */
+void	b_to_a(t_head *head, int count);
 
 /* swap.c */
 void	sa(t_head *head);
@@ -65,21 +78,5 @@ void	rr(t_head *head);
 void	rra(t_head *head);
 void	rrb(t_head *head);
 void	rrr(t_head *head);
-
-/* algo.c */
-int		stack_length(t_stack *stack);
-void	counts_to_zero(int *first, int *second, int *third);
-void	clean_up_stack(t_head *head, int count_a, int count_b);
-void	sort_three_a(t_head *head);
-int		is_asc(t_stack *stack, int count);
-int		is_desc(t_stack *stack, int count);
-int		min_num(t_stack *stack, int count);
-int		max_num(t_stack *stack, int count);
-
-/* a_to_b */
-void	a_to_b(t_head *head, int count);
-/* b_to_a */
-void	b_to_a(t_head *head, int count);
-
 
 #endif

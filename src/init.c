@@ -6,65 +6,64 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 21:11:12 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 23:35:36 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_array(int *arr, int size, int *pivots)
+static t_stack	*new_stack(int num)
 {
-	int		i;
+	t_stack	*stack;
 
-	i = -1;
-	while (++i < size)
+	stack = malloc(sizeof(t_stack));
+	if (stack)
 	{
-		if (i == 0)
-			printf("\nPre-sort:\n[");
-		if (i == size - 1)
-			printf("%d]\n", arr[i]);
-		else
-			printf("%d, ", arr[i]);
+		stack->num = num;
+		stack->next = stack;
+		stack->prev = stack;
 	}
-	printf("pivots) median: %d	small: %d	big: %d\n",
-		pivots[0], pivots[1], pivots[2]);
+	return (stack);
 }
 
-/*!
- * init array every time a_to_b or b_to_a called, to get right pviots
- * @param stack 
- * @param size it depends on @param count in a_to_b() or b_to_a()
- * @param pivots pivots[0] = median, pivots[1] = small, pivots[2] = big
- */
-void	init_array(t_stack *stack, int size, int *pivots)
+static void	append(t_stack **stack_list, t_stack *new_stack)
+{
+	if (!stack_list || !new_stack)
+		return ;
+	if (!*stack_list)
+		*stack_list = new_stack;
+	else
+	{
+		(*stack_list)->prev->next = new_stack;
+		new_stack->prev = (*stack_list)->prev;
+		new_stack->next = *stack_list;
+		(*stack_list)->prev = new_stack;
+	}
+}
+
+static void	init_stack(int size, int *arr, t_head *head)
 {
 	int		i;
-	int		*arr;
 
-	arr = malloc(sizeof(int) * size);
-	if (!arr)
-		return ;
-	i = -1;
-	while (++i < size)
+	head->stack_a = NULL;
+	head->stack_b = NULL;
+	i = 0;
+	while (i < size)
 	{
-		arr[i] = stack->num;
-		stack = stack->next;
+		append(&head->stack_a, new_stack(arr[i]));
+		++i;
 	}
-	quick_sort(arr, 0, size - 1);
-	pivots[0] = arr[(size - 1) / 2];
-	pivots[1] = arr[(size - 1) / 4];
-	pivots[2] = arr[(size - 1) / 2 + (size - 1) / 4 + 1];
-	if (size == 1)
-		pivots[2] = arr[0];
 	free(arr);
 }
 
-t_head	*init(int ac, char **av)
+
+t_head	*init(int size, int *arr)
 {
 	t_head	*head;
 
 	head = malloc(sizeof(t_head));
-	head->stack_a = init_stack(ac, av);
-	head->stack_b = NULL;
+	if (!head)
+		return (NULL);
+	init_stack(size, arr, head);
 	return (head);
 }

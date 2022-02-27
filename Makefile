@@ -10,18 +10,19 @@ LIB_INC		=	$(addprefix -I$(LIB_PATH), $(LIBS))
 
 SRC_PATH	=	./src/
 
-SRCS		=	init.c \
-				main.c \
-				print.c \
-				algo.c \
-				push.c \
-				swap.c \
-				quick_sort.c \
-				reverse_rotate.c \
-				rotate.c \
+SRCS		=	main.c \
+				init.c \
+				utils.c \
 				stack.c \
+				print.c \
+				quick_sort.c \
+				push_swap.c \
 				a_to_b.c\
 				b_to_a.c\
+				push.c \
+				swap.c \
+				reverse_rotate.c \
+				rotate.c \
 
 OBJ_PATH	=	./bin/
 

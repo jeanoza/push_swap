@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sort_three_a(t_head *head)
+static void	sort_three_a(t_head *head)
 {
 	int		first;
 	int		second;
@@ -41,7 +41,7 @@ void	sort_three_a(t_head *head)
 	}
 }
 
-void	a_to_b_count3(t_head *head)
+static void	a_to_b_count3(t_head *head)
 {
 	if (is_asc(head->stack_a, 3))
 		return ;
@@ -68,7 +68,7 @@ void	a_to_b_count3(t_head *head)
 	}
 }
 
-int	check_stack_a(t_head *head, int count)
+static int	check_stack_a(t_head *head, int count)
 {
 	if (count == 2 && is_desc(head->stack_a, count))
 		sa(head);
@@ -90,7 +90,7 @@ void	a_to_b(t_head *head, int count)
 	int	pb_count;
 
 	counts_to_zero(&ra_count, &rb_count, &pb_count);
-	init_array(head->stack_a, count, pivots);
+	find_pivots(head->stack_a, count, pivots);
 	if (check_stack_a(head, count))
 		return ;
 	while (count > 0)

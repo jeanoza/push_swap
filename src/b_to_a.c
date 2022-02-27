@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:40:15 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 20:54:16 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 23:06:00 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	b_to_a(t_head *head, int count)
 	int	pa_count;
 
 	counts_to_zero(&ra_count, &rb_count, &pa_count);
-	init_array(head->stack_b, count, pivots);
+	find_pivots(head->stack_b, count, pivots);
 	if (check_stack_b(head, count))
 		return ;
 	while (count > 0)

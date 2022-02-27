@@ -12,18 +12,75 @@
 
 #include "push_swap.h"
 
-//TODO:put validation function for input args
+int	is_valid_arg(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg[i])
+	{
+		if (!ft_isdigit(arg[i]))
+			return (0);
+		++i;
+	}
+	return (1);
+}
+
+int	is_duplicated(int *arr, int size, int num)
+{
+	int	i;
+
+	i = 0;
+	while (i < size && arr[i])
+	{
+		if (num == arr[i])
+			return (1);
+		++i;
+	}
+	return (0);
+}
+
+void	exit_parse_error(void)
+{
+	write(1, "Error\n", 6);
+	free(arr);
+	exit(EXIT_FAILURE);
+}
+
+int	*parse_av_to_arr(int ac, char **av)
+{
+	int	*arr;
+	int	i;
+
+	arr = malloc(sizeof(int) * ac);
+	if (!arr)
+		return (NULL);
+	i = 0;
+	while (i < ac)
+	{
+		if (is_valid_arg(av[i]) && !is_duplicated(arr, ac, ft_atoi(av[i])))
+			arr[i] = ft_atoi(av[i]);
+		else
+			exit_parse_error();
+		++i;
+	}
+	return (arr);
+}
 
 int	main(int ac, char **av)
 {
 	t_head	*head;
+	int		*arr;
 
-	head = init(ac - 1, av + 1);
-	a_to_b(head, stack_length(head->stack_a));
-	free_stack(head->stack_a);
-	free(head);
-
-	return (0);
+	arr = parse_av_to_arr(ac - 1, av + 1);
+	if (arr)
+	{
+		head = init(ac - 1, arr);
+		a_to_b(head, stack_length(head->stack_a));
+		free_stack(head->stack_a);
+		free(head);
+	}
+	return (EXIT_SUCCESS);
 }
 
 /*
