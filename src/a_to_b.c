@@ -26,17 +26,17 @@ void	sort_three_a(t_head *head)
 	else if (first < second && second > third && first < third)
 	{
 		sa(head);
-		ra(head, NULL);
+		ra(head);
 	}
 	else if (first > second && second < third && first < third)
 		sa(head);
 	else if (first < second && second > third && first > third)
 		rra(head);
 	else if (first > second && second < third && first > third)
-		ra(head, NULL);
+		ra(head);
 	else if (first > second && second > third)
 	{
-		ra(head, NULL);
+		ra(head);
 		sa(head);
 	}
 }
@@ -55,16 +55,16 @@ void	a_to_b_count3(t_head *head)
 		sa(head);
 	if (head->stack_a->num == min_num(head->stack_a, 3))
 	{
-		ra(head, NULL);
+		ra(head);
 		sa(head);
 		rra(head);
 	}
 	else
 	{
-		pb(head, NULL);
+		pb(head);
 		sa(head);
-		ra(head, NULL);
-        pa(head, NULL);
+		ra(head);
+        pa(head);
 		rra(head);
 	}
 }
@@ -92,26 +92,25 @@ void	a_to_b(t_head *head, int count)
     ra_count = 0;
     rb_count = 0;
     pb_count = 0;
-	init_array(head->stack_a, head, count, pivots);
+	init_array(head->stack_a, count, pivots);
     if (check_stack_a(head, count))
         return;
     while (count > 0)
     {
-        if (head->stack_a->num < pivots[2])
+        if (head->stack_a->num < pivots[2] && ++pb_count)
         {
-            pb(head, &pb_count);
-            if (head->stack_b->num >= pivots[0])
-                rb(head, &rb_count);
+            pb(head);
+            if (head->stack_b->num >= pivots[0] && ++rb_count)
+                rb(head);
         }
-        else
-            ra(head, &ra_count);
+        else if (head->stack_a->num >= pivots[2] && ++ra_count)
+            ra(head);
         --count;
     }
     clean_up_stack(head, ra_count, rb_count);
     a_to_b(head, ra_count);
     b_to_a(head, rb_count);
     b_to_a(head, pb_count - rb_count);
-	free(head->sorted_arr);
 }
 //clean
 //a_to_b(ra)

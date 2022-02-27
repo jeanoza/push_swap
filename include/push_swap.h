@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 16:29:07 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/27 17:25:01 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ typedef struct s_head
 {
 	struct s_stack	*stack_a;
 	struct s_stack	*stack_b;
-	int				*sorted_arr;
-	int				length;
 }	t_head;
 
 
 /* init.c */
 t_head	*init(int ac, char **av);
-void	init_array(t_stack *stack, t_head *head, int size, int *pivots);
+void	init_array(t_stack *stack, int size, int *pivots);
 
 /* quick_sort.c */
 int		*quick_sort(int *arr, int left, int right);
@@ -55,13 +53,13 @@ void	sb(t_head	*head);
 void	ss(t_head	*head);
 
 /* push.c */
-void	pb(t_head	*head, int *count);
-void	pa(t_head	*head, int *count);
+void	pb(t_head	*head);
+void	pa(t_head	*head);
 
 /* rotate.c */
-void	ra(t_head *head, int *count);
-void	rb(t_head *head, int *count);
-void	rr(t_head *head, int *count_a, int *count_b);
+void	ra(t_head *head);
+void	rb(t_head *head);
+void	rr(t_head *head);
 
 /* reverse_rotate.c */
 void	rra(t_head *head);
