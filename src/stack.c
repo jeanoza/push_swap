@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 22:06:57 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/27 22:26:29 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/28 21:49:35 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	min_num(t_stack *stack, int count)
 	}
 	return (min);
 }
-
 
 int	max_num(t_stack *stack, int count)
 {

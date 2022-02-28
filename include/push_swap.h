@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/28 21:21:29 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/28 21:49:09 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_head
 	struct s_stack	*stack_a;
 	struct s_stack	*stack_b;
 }	t_head;
-
 
 /* init.c */
 t_head	*init(int ac, char **av);

@@ -81,7 +81,6 @@ static int	check_stack_a(t_head *head, int count)
 	return (0);
 }
 
-
 void	a_to_b(t_head *head, int count)
 {
 	int	pivots[3];
@@ -114,4 +113,3 @@ void	a_to_b(t_head *head, int count)
 //a_to_b(ra)
 //b_to_a(rb)
 //b_to_a(pb-rb)
-
