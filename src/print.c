@@ -6,13 +6,19 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 11:57:33 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/28 21:49:23 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/28 21:59:20 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
+/* This file contains the thing that ONLY visualize stack
+ * (Which is not mandatory part in subject)
+ * But, I keep these functions for evaluator and to debug for my self.
+ * So include <stdio.h> or use "printf" function is not cheating.
+ * for mandatory part such as "sb", "pb", etc, I used write function.
+ */
 static t_stack	*print_stack(t_stack *curr, t_stack *first)
 {
 	printf("%d\t", curr->num);
