@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 23:35:36 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/28 21:39:00 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,44 @@ static void	append(t_stack **stack_list, t_stack *new_stack)
 	}
 }
 
-static void	init_stack(int size, int *arr, t_head *head)
+static void	init_stack(int ac, char **av, t_head *head)
 {
 	int		i;
+	int		j;
+	char	**tmp;
 
-	head->stack_a = NULL;
-	head->stack_b = NULL;
 	i = 0;
-	while (i < size)
+	while (i < ac)
 	{
-		append(&head->stack_a, new_stack(arr[i]));
+		if (av[i][0] == '\0')
+			exit_parse_error(head, NULL, NULL);
+		tmp = ft_split(av[i], ' ');
+		j = 0;
+		while (tmp[j])
+		{
+			if (is_valid(tmp[j]) && !is_duplicated(head->stack_a, tmp[j]))
+			{
+				append(&head->stack_a, new_stack(ft_atoi(tmp[j])));
+				free(tmp[j]);
+			}
+			else
+				exit_parse_error(head, tmp, tmp[j]);
+			++j;
+		}
+		free(tmp);
 		++i;
 	}
-	free(arr);
 }
 
-
-t_head	*init(int size, int *arr)
+t_head	*init(int ac, char **av)
 {
 	t_head	*head;
 
 	head = malloc(sizeof(t_head));
 	if (!head)
 		return (NULL);
-	init_stack(size, arr, head);
+	head->stack_a = NULL;
+	head->stack_b = NULL;
+	init_stack(ac, av, head);
 	return (head);
 }

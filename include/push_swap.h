@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 23:28:44 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/02/28 21:21:29 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_head
 
 
 /* init.c */
-t_head	*init(int size, int *arr);
+t_head	*init(int ac, char **av);
 
 /* quick_sort.c */
 int		*quick_sort(int *arr, int left, int right);
@@ -41,6 +41,9 @@ void	print(t_head *head);
 void	print_array(int *arr, int size, int *pivots);
 
 /* utils.c */
+int		is_valid(char *arg);
+int		is_duplicated(t_stack *stack, char *str);
+void	exit_parse_error(t_head *head, char **splitted, char *current);
 void	find_pivots(t_stack *stack, int size, int *pivots);
 void	free_stack(t_stack *stack);
 
