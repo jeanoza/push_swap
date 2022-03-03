@@ -6,11 +6,11 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 11:46:40 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/03 13:45:26 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 static t_stack	*new_stack(int num)
 {

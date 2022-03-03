@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   b_to_a.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:40:15 by kychoi            #+#    #+#             */
-/*   Updated: 2022/02/27 23:06:00 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/03/03 11:34:41 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	b_to_a(t_head *head, int count)
 	a_to_b(head, ra_count);
 	b_to_a(head, rb_count);
 }
+
 //a_to_b(pa-ra)
 //clean
 //a_to_b(ra)

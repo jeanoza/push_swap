@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 13:22:50 by kychoi           ###   ########.fr       */
+/*   Created: 2022/03/03 12:59:24 by kychoi            #+#    #+#             */
+/*   Updated: 2022/03/03 15:26:41 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef CHECKER_H
+# define CHECKER_H
+# include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft.h"
+# include <stdio.h> //TODO:remove after test
 
 typedef struct s_stack
 {
@@ -31,13 +32,6 @@ typedef struct s_head
 
 /* init.c */
 t_head	*init(int ac, char **av);
-
-/* quick_sort.c */
-int		*quick_sort(int *arr, int left, int right);
-
-/* print.c */
-void	print(t_head *head);
-void	print_array(int *arr, int size, int *pivots);
 
 /* validation.c */
 int		is_valid(char *arg);
@@ -56,11 +50,6 @@ int		stack_length(t_stack *stack);
 void	counts_to_zero(int *first, int *second, int *third);
 void	clean_up_stack(t_head *head, int count_a, int count_b);
 void	free_stack(t_stack *stack);
-
-/* a_to_b */
-void	a_to_b(t_head *head, int count);
-/* b_to_a */
-void	b_to_a(t_head *head, int count);
 
 /* swap.c */
 void	sa(t_head *head);

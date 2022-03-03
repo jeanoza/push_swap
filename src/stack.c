@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 22:06:57 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/02/28 21:49:35 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/03/03 13:09:54 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,4 @@ int	max_num(t_stack *stack, int count)
 		stack = stack->next;
 	}
 	return (max);
-}
-
-int	stack_length(t_stack *stack)
-{
-	int		count;
-	t_stack	*tmp;
-
-	if (stack == NULL)
-		return (0);
-	if (stack->next == stack)
-		return (1);
-	else
-	{
-		count = 0;
-		tmp = stack;
-		while (count == 0 || tmp != stack)
-		{
-			++count;
-			tmp = tmp->next;
-		}
-	}
-	return (count);
 }

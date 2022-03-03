@@ -6,11 +6,11 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:35:41 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 11:35:41 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/03 15:20:30 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 static void	rotate(t_stack **stack)
 {

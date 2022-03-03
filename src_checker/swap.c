@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/03 11:35:41 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 11:35:41 by kychoi           ###   ########.fr       */
+/*   Created: 2022/02/12 20:08:35 by kychoi            #+#    #+#             */
+/*   Updated: 2022/03/03 15:20:38 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-static void	rotate(t_stack **stack)
+static void	swap(t_stack *stack)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
+	int	tmp;
+
+	if (stack == NULL || stack->next == NULL)
 		return ;
-	*stack = (*stack)->next;
+	tmp = stack->num;
+	stack->num = stack->next->num;
+	stack->next->num = tmp;
 }
 
-void	ra(t_head *head)
+void	sa(t_head	*head)
 {
-	rotate(&(head->stack_a));
-	write(1, "ra\n", 3);
+	swap(head->stack_a);
+	write(1, "sa\n", 3);
 }
 
-void	rb(t_head *head)
+void	sb(t_head	*head)
 {
-	rotate(&(head->stack_b));
-	write(1, "rb\n", 3);
+	swap(head->stack_b);
+	write(1, "sb\n", 3);
 }
 
-void	rr(t_head *head)
+void	ss(t_head	*head)
 {
-	rotate(&(head->stack_a));
-	rotate(&(head->stack_b));
-	write(1, "rr\n", 3);
+	swap(head->stack_a);
+	swap(head->stack_b);
+	write(1, "ss\n", 3);
 }
