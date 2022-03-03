@@ -6,13 +6,13 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:35:11 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 11:35:12 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/03 20:25:35 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	sort_three_a(t_head *head)
+void	sort_three_a(t_head *head)
 {
 	int		first;
 	int		second;

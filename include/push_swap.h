@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 13:22:50 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/03 20:25:16 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	free_stack(t_stack *stack);
 
 /* a_to_b */
 void	a_to_b(t_head *head, int count);
+void	sort_three_a(t_head *head);
 /* b_to_a */
 void	b_to_a(t_head *head, int count);
 
