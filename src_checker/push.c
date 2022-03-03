@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:05:53 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 15:20:09 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/03 17:55:15 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,9 @@ static void	prepend(t_stack **stack_list, t_stack *new_stack)
 void	pb(t_head	*head)
 {
 	prepend(&(head->stack_b), pop(&(head->stack_a)));
-	write(1, "pb\n", 3);
 }
 
 void	pa(t_head	*head)
 {
 	prepend(&(head->stack_a), pop(&(head->stack_b)));
-	write(1, "pa\n", 3);
 }

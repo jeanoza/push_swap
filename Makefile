@@ -32,6 +32,8 @@ CHECK_PATH	=	./src_checker/
 
 CHECK_SRCS	=	main.c \
 				init.c \
+				stack.c \
+				print.c \
 				validation.c \
 				push_swap.c \
 				push.c \

@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:59:24 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 15:26:41 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/03 17:42:23 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ typedef struct s_head
 
 /* init.c */
 t_head	*init(int ac, char **av);
+
+/* print.c */
+void	print(t_head *head);
+void	print_array(int *arr, int size, int *pivots);
 
 /* validation.c */
 int		is_valid(char *arg);
