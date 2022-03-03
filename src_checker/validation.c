@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/03/03 21:04:52 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/03 21:17:16 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_valid(char *arg)
 	int	res_atoi;
 
 	res_atoi = ft_atoi(arg);
-	if ((res_atoi < 0 && arg[0] != '-') || (res_atoi > 0 && arg[0] == '-'))
+	if (ft_strncmp(ft_itoa(res_atoi), arg, ft_strlen(arg)) != 0)
 		return (0);
 	i = 0;
 	while (arg[i])
