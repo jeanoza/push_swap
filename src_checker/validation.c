@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/03/03 15:20:58 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/03 16:59:52 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int	is_valid(char *arg)
 {
 	int	i;
+	int	res_atoi;
 
+	res_atoi = ft_atoi(arg);
+	if ((res_atoi < 0 && arg[0] != '-') || (res_atoi > 0 && arg[0] == '-'))
+		return (0);
 	i = 0;
 	while (arg[i])
 	{
@@ -60,3 +64,4 @@ void	exit_parse_error(t_head *head, char **splitted, char *current)
 		free(head);
 	exit(EXIT_FAILURE);
 }
+// system("leaks checker");
