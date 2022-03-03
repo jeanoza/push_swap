@@ -70,12 +70,13 @@ $(NAME):		$(OBJS)
 
 
 $(CHECKER):		$(CHECK_OBJS)
+				make -C $(LIBFT_PATH)
 				$(CC) $(CFLAGS) $(CHECK_OBJS) -L$(LIBFT_PATH) -lft -o $(CHECKER)
 
 
-all:			$(NAME) $(CHECKER)
+all:			$(NAME)
 
-bonus:			$(CHECKER)
+bonus:			re $(CHECKER)
 
 clean:
 				rm -rf $(OBJ_PATH)
