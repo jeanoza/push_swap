@@ -3,39 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:08:41 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 21:19:59 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/04 20:27:19 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+#include <fcntl.h>
 
+void	operation_error(char *op, t_head *head)
+{
+	free(op);
+	write(1, "Error\n", 6);
+	if (stack_length(head->stack_a) > 0)
+		free_stack(head->stack_a);
+	if (stack_length(head->stack_b) > 0)
+		free_stack(head->stack_b);
+	free(head);
+	exit(EXIT_FAILURE);
+}
 void	operation(char *op, t_head *head)
 {
 	if (ft_strncmp(op, "sa\n", 3) == 0)
 		sa(head);
-	if (ft_strncmp(op, "sb\n", 3) == 0)
+	else if (ft_strncmp(op, "sb\n", 3) == 0)
 		sb(head);
-	if (ft_strncmp(op, "ss\n", 3) == 0)
+	else if (ft_strncmp(op, "ss\n", 3) == 0)
 		ss(head);
-	if (ft_strncmp(op, "ra\n", 3) == 0)
+	else if (ft_strncmp(op, "ra\n", 3) == 0)
 		ra(head);
-	if (ft_strncmp(op, "rb\n", 3) == 0)
+	else if (ft_strncmp(op, "rb\n", 3) == 0)
 		rb(head);
-	if (ft_strncmp(op, "rr\n", 3) == 0)
+	else if (ft_strncmp(op, "rr\n", 3) == 0)
 		rr(head);
-	if (ft_strncmp(op, "pa\n", 3) == 0)
+	else if (ft_strncmp(op, "pa\n", 3) == 0)
 		pa(head);
-	if (ft_strncmp(op, "pb\n", 3) == 0)
+	else if (ft_strncmp(op, "pb\n", 3) == 0)
 		pb(head);
-	if (ft_strncmp(op, "rra\n", 4) == 0)
+	else if (ft_strncmp(op, "rra\n", 4) == 0)
 		rra(head);
-	if (ft_strncmp(op, "rrb\n", 4) == 0)
+	else if (ft_strncmp(op, "rrb\n", 4) == 0)
 		rrb(head);
-	if (ft_strncmp(op, "rrr\n", 4) == 0)
+	else if (ft_strncmp(op, "rrr\n", 4) == 0)
 		rrr(head);
+	else
+		operation_error(op, head);
+
 }
 
 int	main(int ac, char **av)
@@ -53,9 +68,9 @@ int	main(int ac, char **av)
 	}
 	if (head->stack_b == NULL
 		&& is_asc(head->stack_a, stack_length(head->stack_a)))
-		return (write(1, "OK\n", 3));
+		write(1, "OK\n", 3);
 	else
-		return (write(1, "KO\n", 3));
+		write(1, "KO\n", 3);
 	free_stack(head->stack_a);
 	free(head);
 	return (EXIT_SUCCESS);
