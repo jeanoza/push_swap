@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/03/03 21:17:16 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/04 19:33:27 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int	is_valid(char *arg)
 {
-	int	i;
-	int	res_atoi;
+	int		i;
+	char	*res_atoi_to_itoa;
 
-	res_atoi = ft_atoi(arg);
-	if (ft_strncmp(ft_itoa(res_atoi), arg, ft_strlen(arg)) != 0)
+	res_atoi_to_itoa = ft_itoa(ft_atoi(arg));
+	if (ft_strncmp(res_atoi_to_itoa, arg, ft_strlen(arg)) != 0)
+	{
+		free(res_atoi_to_itoa);
 		return (0);
+	}
+	free(res_atoi_to_itoa);
 	i = 0;
 	while (arg[i])
 	{
