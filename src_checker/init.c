@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/03 13:45:26 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/04 14:13:29 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ t_head	*init(int ac, char **av)
 {
 	t_head	*head;
 
+	if (ac == 0)
+		exit(EXIT_FAILURE);
 	head = malloc(sizeof(t_head));
 	if (!head)
 		return (NULL);
