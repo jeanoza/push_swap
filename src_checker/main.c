@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:08:41 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/04 20:28:48 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/03/05 10:52:06 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	operation_error(char *op, t_head *head)
 	free(head);
 	exit(EXIT_FAILURE);
 }
+
 void	operation(char *op, t_head *head)
 {
 	if (ft_strncmp(op, "sa\n", 3) == 0)
@@ -50,7 +51,6 @@ void	operation(char *op, t_head *head)
 		rrr(head);
 	else
 		operation_error(op, head);
-
 }
 
 int	main(int ac, char **av)
@@ -75,21 +75,3 @@ int	main(int ac, char **av)
 	free(head);
 	return (EXIT_SUCCESS);
 }
-
-//compile
-//gcc -I./lib/libft -I./include -c ./src_checker/*.c
-//gcc *.o -L./lib/libft/ -lft -o checker
-//gcc main.o -L./lib/libft -lft -o checker
-//./push_swap $ARG | ./checker ${ARG}
-//system("leaks checker");
-
-	// int		i;
-	// t_stack	*tmp;
-	// i = 0;
-	// tmp = head->stack_a;
-	// while (i == 0 || tmp != head->stack_a)
-	// {
-	// 	printf("tmp[%p]:%d\n", tmp, tmp->num);
-	// 	tmp = tmp->next;
-	// 	++i;
-	// }

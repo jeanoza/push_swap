@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/03/04 19:33:27 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/03/05 10:51:33 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ void	exit_parse_error(t_head *head, char **splitted, char *current)
 		free(head);
 	exit(EXIT_FAILURE);
 }
-// system("leaks checker");
