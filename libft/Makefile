@@ -61,18 +61,18 @@ NAME		=	libft.a
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				$(CC) $(CFLAGS) -o $@ -c $< -I $(HEADER)
+				@$(CC) $(CFLAGS) -o $@ -c $< -I $(HEADER)
 
 $(NAME):		$(OBJS)
-				ar rcs $@ $^
+				@ar rcs $@ $^
 
 all:			$(NAME)
 
 clean:
-				rm -rf $(OBJ_PATH)
+				@rm -rf $(OBJ_PATH)
 
 fclean:			clean
-				rm -f $(NAME)
+				@rm -f $(NAME)
 
 re: 			fclean all
 

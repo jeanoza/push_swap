@@ -2,3 +2,5 @@
 *.a
 push_swap
 checker
+checker_Mac
+visualize/

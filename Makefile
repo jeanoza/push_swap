@@ -1,12 +1,6 @@
 HEADER_INC	=	-I./include
 
-LIB_PATH	=	./lib/
-
-LIBFT_PATH	=	$(LIB_PATH)libft
-
-LIBS		=	libft
-
-LIB_INC		=	$(addprefix -I$(LIB_PATH), $(LIBS))
+LIBFT_PATH	=	./libft/
 
 SRC_PATH	=	./src/
 
@@ -58,19 +52,19 @@ CHECKER		=	checker
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				$(CC) $(CFLAGS) $(HEADER_INC) $(LIB_INC) -c $< -o $@
+				@$(CC) $(CFLAGS) $(HEADER_INC) -I$(LIBFT_PATH) -c $< -o $@
 
 $(CHECK_O_PATH)%.o: $(CHECK_PATH)%.c
 				@mkdir -p $(CHECK_O_PATH)
-				$(CC) $(CFLAGS) $(HEADER_INC) $(LIB_INC) -c $< -o $@
+				@$(CC) $(CFLAGS) $(HEADER_INC) -I$(LIBFT_PATH) -c $< -o $@
 
 $(NAME):		$(OBJS)
-				make -C $(LIBFT_PATH)
-				$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -o $(NAME)
+				@make -C $(LIBFT_PATH)
+				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -o $(NAME)
 
 
 $(CHECKER):		$(CHECK_OBJS)
-				$(CC) $(CFLAGS) $(CHECK_OBJS) -L$(LIBFT_PATH) -lft -o $(CHECKER)
+				@$(CC) $(CFLAGS) $(CHECK_OBJS) -L$(LIBFT_PATH) -lft -o $(CHECKER)
 
 
 all:			$(NAME)
@@ -78,13 +72,13 @@ all:			$(NAME)
 bonus:			re $(CHECKER)
 
 clean:
-				rm -rf $(OBJ_PATH)
-				rm -rf $(CHECK_O_PATH)
-				make -C $(LIBFT_PATH) fclean
+				@rm -rf $(OBJ_PATH)
+				@rm -rf $(CHECK_O_PATH)
+				@make -C $(LIBFT_PATH) fclean
 
 fclean:			clean
-				rm -f $(NAME)
-				rm -f $(CHECKER)
+				@rm -f $(NAME)
+				@rm -f $(CHECKER)
 
 re: 			fclean all
 
