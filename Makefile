@@ -70,7 +70,6 @@ $(NAME):		$(OBJS)
 
 
 $(CHECKER):		$(CHECK_OBJS)
-				make -C $(LIBFT_PATH)
 				$(CC) $(CFLAGS) $(CHECK_OBJS) -L$(LIBFT_PATH) -lft -o $(CHECKER)
 
 
