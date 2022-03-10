@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 11:35:25 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/05 10:51:37 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/03/10 22:39:04 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	main(int ac, char **av)
 	t_head	*head;
 
 	head = init(ac - 1, av + 1);
-	if (stack_length(head->stack_a) == 5)
+	if (stack_length(head->stack_a) == 1)
+		;
+	else if (stack_length(head->stack_a) == 5)
 		sort_five_a(head);
 	else
 		a_to_b(head, stack_length(head->stack_a));

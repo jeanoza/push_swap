@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 11:55:36 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/03/10 12:32:34 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/10 22:33:19 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,12 @@ int	is_duplicated(t_stack *stack, char *str)
 void	exit_parse_error(t_head *head, char **splitted, int idx)
 {
 	write(1, "Error\n", 6);
-	while (splitted[idx])
-		free(splitted[idx++]);
 	if (splitted)
+	{
+		while (splitted[idx])
+			free(splitted[idx++]);
 		free(splitted);
+	}
 	if (head->stack_a)
 		free_stack(head->stack_a);
 	if (head)

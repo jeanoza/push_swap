@@ -43,7 +43,7 @@ CC			=	gcc
 
 CFLAGS		=	-Wall -Werror -Wextra
 
-CFLAGS_FSAN	=	-Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS_FSAN	=	-Wall -Werror -Wextra -fsanitize=address
 
 NAME		=	push_swap
 
@@ -52,7 +52,7 @@ CHECKER		=	checker
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CFLAGS) $(HEADER_INC) -I$(LIBFT_PATH) -c $< -o $@
+				@$(CC) $(CFLAGS_FSAN) $(HEADER_INC) -I$(LIBFT_PATH) -c $< -o $@
 
 $(CHECK_O_PATH)%.o: $(CHECK_PATH)%.c
 				@mkdir -p $(CHECK_O_PATH)
@@ -60,7 +60,7 @@ $(CHECK_O_PATH)%.o: $(CHECK_PATH)%.c
 
 $(NAME):		$(OBJS)
 				@make -C $(LIBFT_PATH)
-				@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -o $(NAME)
+				@$(CC) $(CFLAGS_FSAN) $(OBJS) -L$(LIBFT_PATH) -lft -o $(NAME)
 
 
 $(CHECKER):		$(CHECK_OBJS)
