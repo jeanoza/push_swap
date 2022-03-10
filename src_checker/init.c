@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 20:45:22 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/04 14:13:29 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/10 12:31:56 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	init_stack(int ac, char **av, t_head *head)
 	while (i < ac)
 	{
 		if (av[i][0] == '\0')
-			exit_parse_error(head, NULL, NULL);
+			exit_parse_error(head, NULL, 0);
 		tmp = ft_split(av[i], ' ');
 		j = 0;
 		while (tmp[j])
@@ -62,7 +62,7 @@ static void	init_stack(int ac, char **av, t_head *head)
 				free(tmp[j]);
 			}
 			else
-				exit_parse_error(head, tmp, tmp[j]);
+				exit_parse_error(head, tmp, j);
 			++j;
 		}
 		free(tmp);

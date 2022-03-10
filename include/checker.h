@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:59:24 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/10 09:43:20 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/03/10 12:36:20 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h> //TODO:remove after test
 
 typedef struct s_stack
 {
@@ -40,7 +39,7 @@ void	print_array(int *arr, int size, int *pivots);
 /* validation.c */
 int		is_valid(char *arg);
 int		is_duplicated(t_stack *stack, char *str);
-void	exit_parse_error(t_head *head, char **splitted, char *current);
+void	exit_parse_error(t_head *head, char **splitted, int	idx);
 
 /* stack.c */
 int		is_asc(t_stack *stack, int count);
