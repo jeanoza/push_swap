@@ -6,12 +6,11 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 12:08:41 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/06 08:57:25 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/03/10 09:43:53 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-#include <fcntl.h>
 
 void	operation_error(char *op, t_head *head)
 {
