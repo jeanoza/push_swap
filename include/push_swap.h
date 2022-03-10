@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 16:06:12 by kychoi            #+#    #+#             */
-/*   Updated: 2022/03/10 12:36:43 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/03/10 13:25:26 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_array(int *arr, int size, int *pivots);
 /* validation.c */
 int		is_valid(char *arg);
 int		is_duplicated(t_stack *stack, char *str);
-void	exit_parse_error(t_head *head, char **splitted, int	idx);
+void	exit_parse_error(t_head *head, char **splitted, int idx);
 
 /* stack.c */
 int		is_asc(t_stack *stack, int count);
